@@ -168,7 +168,18 @@ public class BoardTiles extends VBox {
         Label lName = new Label(sName);
         lName.setWrapText(true);
         lName.setAlignment(Pos.CENTER);
-        lName.setScaleShape(true);
         return lName;
+    }
+
+    public String getsName() {
+        return sName;
+    }
+
+    public Paint getColor() {
+        return color;
+    }
+
+    public int getiCost() {
+        return iCost;
     }
 }
