@@ -18,20 +18,18 @@
  */
 package MonopolyBoard;
 
-import javafx.scene.chart.BarChart;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
 
 public class BoardView {
 
-//    /** The model of the mvc */
-//
 
     /** The root of the scene */
     private final GridPane root;
-
 
     /** The root width and height */
     private final double BOARD_SIZE = 630;
@@ -40,7 +38,7 @@ public class BoardView {
     private final Color BACKGROUND = Color.web("#d4ffde");
 
     /** The monopoly name */
-
+    private Label monopolyName;
 
 
     /**
@@ -55,7 +53,7 @@ public class BoardView {
         // Fill background of root
         root.setBackground(new Background(new BackgroundFill(BACKGROUND, null, null)));
 
-        // Size the columns and rows
+        // Size the columns of the GridPane
         ColumnConstraints columnEdge = new ColumnConstraints();
         columnEdge.setPercentWidth(14);
         ColumnConstraints columnMiddle = new ColumnConstraints();
@@ -63,6 +61,7 @@ public class BoardView {
         root.getColumnConstraints().addAll(columnEdge, columnMiddle, columnMiddle, columnMiddle,
                 columnMiddle, columnMiddle, columnMiddle, columnMiddle, columnMiddle, columnMiddle, columnEdge);
 
+        // Size the row so the GridPane
         RowConstraints rowEdge = new RowConstraints();
         rowEdge.setPercentHeight(14);
         RowConstraints rowMiddle = new RowConstraints();
@@ -70,38 +69,34 @@ public class BoardView {
         root.getRowConstraints().addAll(rowEdge, rowMiddle, rowMiddle, rowMiddle, rowMiddle, rowMiddle,
                 rowMiddle, rowMiddle, rowMiddle, rowMiddle, rowEdge);
 
-
-
+        // Initialize all the properties
         initProperties();
 
 
-//        // Create Monopoly name
-//        monopolyName = new Label("MONOPOLY");
-//        monopolyName.setBackground(new Background(new BackgroundFill(Color.RED, null, null)));
+        // Create Monopoly name
+        // TODO need to figure out how to make the name change size when the board is resized
+        // TODO need to figure out how to center the name
+        monopolyName = new Label("MONOPOLY");
+        monopolyName.setTextFill(Color.WHITE);
+//        monopolyName.setTextAlignment(TextAlignment.CENTER);
+        monopolyName.setAlignment(Pos.CENTER);
+        monopolyName.setFont(new Font("Arial", 40));
+        monopolyName.setBackground(new Background(new BackgroundFill(Color.RED, null, null)));
+//        monopolyName.setRotate(325);
+        root.add(monopolyName, 3,5, 5, 1);
     }
 
+    /**
+     * @return the root
+     */
     public GridPane getRoot() {
         return root;
     }
 
+    /**
+     * Initializes all the properties
+     */
     public void initProperties() {
-//        /** the width of the property tiles */
-//        double PROP_WIDTH = BOARD_SIZE*.0769;
-//        /** The height of the property tiles */
-//        double PROP_HEIGHT = BOARD_SIZE*.13;
-//        root.add(new BoardTiles("FREE PARKING", PROP_HEIGHT), 0,0);
-//        BoardTiles y1 = new BoardTiles(Color.RED, "KENTUCKY AVENUE", 220, PROP_HEIGHT, PROP_WIDTH);
-//        root.add(y1, 1, 0);
-//        root.add(new BoardTiles("CHANCE", PROP_HEIGHT, PROP_WIDTH), 2, 0);
-//        root.add(new BoardTiles(Color.RED, "INDIANA AVENUE", 220, PROP_HEIGHT, PROP_WIDTH), 3, 0);
-//        root.add(new BoardTiles(Color.RED, "ILLINOIS AVENUE", 220, PROP_HEIGHT, PROP_WIDTH), 4, 0);
-//        root.add(new BoardTiles("B. & O. RAILROAD", 200, PROP_HEIGHT, PROP_WIDTH),5, 0);
-//        root.add(new BoardTiles(Color.YELLOW, "ATLANTIC AVENUE", 260, PROP_HEIGHT, PROP_WIDTH), 6, 0);
-//        root.add(new BoardTiles(Color.YELLOW, "VETNOR AVENUE", 260, PROP_HEIGHT, PROP_WIDTH), 7, 0);
-//        root.add(new BoardTiles("WATER WORKS", 150, PROP_HEIGHT, PROP_WIDTH), 8, 0);
-//        root.add(new BoardTiles(Color.YELLOW, "MARVIN GARDENS", 260, PROP_HEIGHT, PROP_WIDTH), 9, 0);
-//        root.add(new BoardTiles("GO TO JAIL", PROP_HEIGHT), 10, 0);
-
 
         root.add(new BoardTiles("FREE PARKING"), 0,0);
 
@@ -182,7 +177,7 @@ public class BoardView {
         root.add(new_york, 0, 1);
 
         BoardTiles tennessee = new BoardTiles(Color.ORANGE, "TENNESSEE", 180);
-//        tennessee.setRotate(90);
+//        tennessee.setRotate(90); //TODO This rotates the whole node so the tiles don't fit right, need to find a way to rotate just the contents
         root.add(tennessee, 0, 2);
 
         BoardTiles commChest1 = new BoardTiles("COMMUNITY CHEST");
