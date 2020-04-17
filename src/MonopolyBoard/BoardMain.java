@@ -26,6 +26,7 @@ public class BoardMain extends Application {
         // Add the scene graph to the stage
         primaryStage.setScene(new Scene(theView.getRoot()));
         primaryStage.sizeToScene();
+        primaryStage.setResizable(false);
 
         // Display the scene
         primaryStage.show();
