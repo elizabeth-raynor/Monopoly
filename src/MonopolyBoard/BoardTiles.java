@@ -44,6 +44,7 @@ public class BoardTiles extends VBox {
     /** The monopoly font */
     private String font = "Kabel Heavy";
 
+
     /**
      * Constructor for properties
      * @param color the color of the property as a Paint object
@@ -83,10 +84,10 @@ public class BoardTiles extends VBox {
     private void formatProperty() {
         this.setAlignment(Pos.CENTER);
 //        this.setSpacing(this.getHeight()/3); ****These don't work, this.getHeight returns 0, not sure how to get height of the node
-//        System.out.println(this.getHeight());
+//        System.out.println();
 //        System.out.println(this.getWidth());
-        // TODO need to figure out how to resize the color rectangles when the board is resized
-        this.getChildren().add(new Rectangle(55, 10, this.color));
+        // TODO need to figure out how to fit rectangle to size of the tile
+        this.getChildren().add(new Rectangle(55, 15, this.color));
         Label lName = getNameLabel();
         this.getChildren().add(lName);
         Label lCost = getCostLabel();
@@ -126,6 +127,7 @@ public class BoardTiles extends VBox {
         lName.setWrapText(true);
         lName.setAlignment(Pos.CENTER);
         lName.setFont(new Font(font, 11));
+        lName.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
         return lName;
     }
 

@@ -23,6 +23,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.TextAlignment;
 
 
 public class BoardView {
@@ -31,8 +32,20 @@ public class BoardView {
     /** The root of the scene */
     private final GridPane root;
 
-    /** The root width and height */
-    private final double BOARD_SIZE = 630;
+    /** The root height */
+    private final double BOARD_HEIGHT = 630;
+
+    /** The root width */
+    private final double BOARD_WIDTH = BOARD_HEIGHT + 270;
+
+    /** The percent of the board width that each column has */
+    private final double EDGE_WIDTH = 9.8;
+    private final double MIDDLE_WIDTH = 5.6;
+    private final double SIDE_PANEL_WIDTH = 30;
+
+    /** The percent of the board height that each row has */
+    private final double EDGE_HEIGHT = 14;
+    private final double MIDDLE_HEIGHT = 8;
 
     /** The background color */
     private final Color BACKGROUND = Color.web("#d4ffde");
@@ -48,42 +61,55 @@ public class BoardView {
 
         // Initialize and format the root
         root = new GridPane();
-        root.setPrefSize(BOARD_SIZE, BOARD_SIZE);
+        root.setPrefSize(BOARD_WIDTH, BOARD_HEIGHT);
 
         // Fill background of root
         root.setBackground(new Background(new BackgroundFill(BACKGROUND, null, null)));
 
-        // Size the columns of the GridPane
-        ColumnConstraints columnEdge = new ColumnConstraints();
-        columnEdge.setPercentWidth(14);
-        ColumnConstraints columnMiddle = new ColumnConstraints();
-        columnMiddle.setPercentWidth(8);
-        root.getColumnConstraints().addAll(columnEdge, columnMiddle, columnMiddle, columnMiddle,
-                columnMiddle, columnMiddle, columnMiddle, columnMiddle, columnMiddle, columnMiddle, columnEdge);
-
-        // Size the row so the GridPane
-        RowConstraints rowEdge = new RowConstraints();
-        rowEdge.setPercentHeight(14);
-        RowConstraints rowMiddle = new RowConstraints();
-        rowMiddle.setPercentHeight(8);
-        root.getRowConstraints().addAll(rowEdge, rowMiddle, rowMiddle, rowMiddle, rowMiddle, rowMiddle,
-                rowMiddle, rowMiddle, rowMiddle, rowMiddle, rowEdge);
+        // Size the grids in the root
+        sizeColumns();
+        sizeRows();
 
         // Initialize all the properties
         initProperties();
 
+        // Initialize the die
+        initDie();
+
+        // Initialize the controls
+        initControls();
 
         // Create Monopoly name
-        // TODO need to figure out how to make the name change size when the board is resized
-        // TODO need to figure out how to center the name
-        monopolyName = new Label("MONOPOLY");
-        monopolyName.setTextFill(Color.WHITE);
-//        monopolyName.setTextAlignment(TextAlignment.CENTER);
-        monopolyName.setAlignment(Pos.CENTER);
-        monopolyName.setFont(new Font("Arial", 40));
-        monopolyName.setBackground(new Background(new BackgroundFill(Color.RED, null, null)));
-//        monopolyName.setRotate(325);
-        root.add(monopolyName, 3,5, 5, 1);
+        initMonopolyName();
+    }
+
+    /**
+     * Size the columns of the GridPane
+     */
+    private void sizeColumns() {
+        // Size the columns of the GridPane
+        ColumnConstraints columnEdge = new ColumnConstraints();
+        columnEdge.setPercentWidth(EDGE_WIDTH);
+        ColumnConstraints columnMiddle = new ColumnConstraints();
+        columnMiddle.setPercentWidth(MIDDLE_WIDTH);
+        ColumnConstraints columnSidePanel = new ColumnConstraints();
+        columnSidePanel.setPercentWidth(SIDE_PANEL_WIDTH);
+        root.getColumnConstraints().addAll(columnEdge, columnMiddle, columnMiddle, columnMiddle,
+                columnMiddle, columnMiddle, columnMiddle, columnMiddle, columnMiddle, columnMiddle,
+                columnEdge, columnSidePanel);
+    }
+
+    /**
+     * Size the rows of the GridPane
+     */
+    private void sizeRows() {
+        // Size the rows of the GridPane
+        RowConstraints rowEdge = new RowConstraints();
+        rowEdge.setPercentHeight(EDGE_HEIGHT);
+        RowConstraints rowMiddle = new RowConstraints();
+        rowMiddle.setPercentHeight(MIDDLE_HEIGHT);
+        root.getRowConstraints().addAll(rowEdge, rowMiddle, rowMiddle, rowMiddle, rowMiddle, rowMiddle,
+                rowMiddle, rowMiddle, rowMiddle, rowMiddle, rowEdge);
     }
 
     /**
@@ -101,39 +127,30 @@ public class BoardView {
         root.add(new BoardTiles("FREE PARKING"), 0,0);
 
         BoardTiles kentucky = new BoardTiles(Color.RED, "KENTUCKY AVENUE", 220);
-        kentucky.setRotate(180);
         root.add(kentucky, 1, 0);
 
         BoardTiles blueChance = new BoardTiles("CHANCE");
-        blueChance.setRotate(180);
         root.add(blueChance, 2, 0);
 
         BoardTiles indiana = new BoardTiles(Color.RED, "INDIANA AVENUE", 220);
-        indiana.setRotate(180);
         root.add(indiana , 3, 0);
 
         BoardTiles illinois = new BoardTiles(Color.RED, "ILLINOIS AVENUE", 220);
-        illinois.setRotate(180);
         root.add(illinois, 4, 0);
 
         BoardTiles boRR = new BoardTiles("B. & O. RAILROAD", 200);
-        boRR.setRotate(180);
         root.add(boRR,5, 0);
 
         BoardTiles atlantic = new BoardTiles(Color.YELLOW, "ATLANTIC AVENUE", 260);
-        atlantic.setRotate(180);
         root.add(atlantic, 6, 0);
 
         BoardTiles ventor = new BoardTiles(Color.YELLOW, "VETNOR AVENUE", 260);
-        ventor.setRotate(180);
         root.add(ventor, 7, 0);
 
         BoardTiles waterWorks = new BoardTiles("WATER WORKS", 150);
-        waterWorks.setRotate(180);
         root.add(waterWorks, 8, 0);
 
         BoardTiles marvin = new BoardTiles(Color.YELLOW, "MARVIN GARDENS", 260);
-        marvin.setRotate(180);
         root.add(marvin, 9, 0);
 
         BoardTiles goToJail = new BoardTiles("GO TO JAIL");
@@ -142,10 +159,10 @@ public class BoardView {
         BoardTiles jail = new BoardTiles("JAIL");
         root.add(jail, 0, 10);
 
-        BoardTiles connecticut = new BoardTiles(Color.LIGHTBLUE, "CONNECTICUT", 120);
+        BoardTiles connecticut = new BoardTiles(Color.LIGHTBLUE, "CONNECTICUT AVENUE", 120);
         root.add(connecticut, 1, 10);
 
-        BoardTiles vermont = new BoardTiles(Color.LIGHTBLUE, "VERMONT", 100);
+        BoardTiles vermont = new BoardTiles(Color.LIGHTBLUE, "VERMONT AVENUE", 100);
         root.add(vermont, 2, 10);
 
         BoardTiles pinkChance = new BoardTiles("CHANCE");
@@ -172,16 +189,13 @@ public class BoardView {
         BoardTiles go = new BoardTiles("GO");
         root.add(go, 10, 10);
 
-
         BoardTiles new_york = new BoardTiles(Color.ORANGE, "NEW YORK AVENUE", 200);
         root.add(new_york, 0, 1);
 
         BoardTiles tennessee = new BoardTiles(Color.ORANGE, "TENNESSEE", 180);
-//        tennessee.setRotate(90); //TODO This rotates the whole node so the tiles don't fit right, need to find a way to rotate just the contents
         root.add(tennessee, 0, 2);
 
         BoardTiles commChest1 = new BoardTiles("COMMUNITY CHEST");
-//        commChest1.setRotate(90);
         root.add(commChest1, 0,3 );
 
         BoardTiles stJame = new BoardTiles(Color.ORANGE, "ST. JAMES", 180);
@@ -228,5 +242,46 @@ public class BoardView {
 
         BoardTiles boardwalk = new BoardTiles(Color.DODGERBLUE, "BOARDWALK", 400);
         root.add(boardwalk, 10,9);
+    }
+
+    /**
+     * Initializes the die
+     */
+    private void initDie() {
+        // Mark of where the die will be // TODO remove this and add the die
+        Label die = new Label("DIE");
+        die.setAlignment(Pos.CENTER);
+        die.setTextAlignment(TextAlignment.CENTER);
+        die.setPrefSize(Double.MAX_VALUE, Double.MAX_VALUE);
+        die.setBorder(new Border(new BorderStroke(null, BorderStrokeStyle.SOLID, null, null)));
+        root.add(die, 11, 0, 1, 4);
+
+    }
+
+    /**
+     * Initializes the controls
+     */
+    private void initControls() {
+        // Mark of where the controls will be // TODO remove this and add the controls
+        Label controls = new Label("CONTROLS");
+        controls.setTextAlignment(TextAlignment.CENTER);
+        controls.setAlignment(Pos.CENTER);
+        controls.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+        controls.setBorder(new Border(new BorderStroke(null, BorderStrokeStyle.SOLID, null, null)));
+        root.add(controls, 11, 4, 1, 7);
+    }
+
+    /**
+     * Intializes the Monopoly Name in the Middle
+     */
+    private void initMonopolyName() {
+        monopolyName = new Label("MONOPOLY");
+        monopolyName.setTextFill(Color.WHITE);
+        monopolyName.setAlignment(Pos.CENTER);
+        monopolyName.setFont(new Font("Arial", 40));
+        monopolyName.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+        monopolyName.setBackground(new Background(new BackgroundFill(Color.RED, null, null)));
+        monopolyName.setRotate(325);
+        root.add(monopolyName, 3,5, 5, 1);
     }
 }
