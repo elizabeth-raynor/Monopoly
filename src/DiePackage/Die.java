@@ -1,3 +1,5 @@
+package DiePackage;
+
 import java.util.Random;
 
 public class Die {
