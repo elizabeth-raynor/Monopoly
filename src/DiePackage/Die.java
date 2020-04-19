@@ -1,12 +1,10 @@
-package DiePackage;
-
 import java.util.Random;
 
 public class Die {
     private static Random randNumRoller = new Random();
     private static Random randNumRollerTwo = new Random();
-    static int numSides = 6;
-    static int addOne = 1;
+    private static int numSides = 6;
+    private static int addOne = 1;
 
     public static int roll() {
         int rollNum = randNumRoller.nextInt(numSides);
