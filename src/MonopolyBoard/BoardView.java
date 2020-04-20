@@ -18,8 +18,13 @@
  */
 package MonopolyBoard;
 
+import DiePackage.Die;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -248,13 +253,13 @@ public class BoardView {
      * Initializes the die
      */
     private void initDie() {
-        // Mark of where the die will be // TODO remove this and add the die
-        Label die = new Label("DIE");
-        die.setAlignment(Pos.CENTER);
-        die.setTextAlignment(TextAlignment.CENTER);
-        die.setPrefSize(Double.MAX_VALUE, Double.MAX_VALUE);
-        die.setBorder(new Border(new BorderStroke(null, BorderStrokeStyle.SOLID, null, null)));
-        root.add(die, 11, 0, 1, 4);
+
+        DieView dieView = new DieView();
+        VBox dieViewRoot = dieView.getRoot();
+
+        dieViewRoot.setPrefSize(Double.MAX_VALUE, Double.MAX_VALUE);
+        dieViewRoot.setBorder(new Border(new BorderStroke(null, BorderStrokeStyle.SOLID, null, null)));
+        root.add(dieViewRoot, 11, 0, 1, 4);
 
     }
 

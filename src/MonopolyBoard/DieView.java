@@ -1,62 +1,61 @@
 package MonopolyBoard;
 
 import DiePackage.Die;
-import javafx.application.Application;
 import javafx.geometry.Insets;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
-import java.awt.*;
+public class DieView extends VBox {
 
-public class DieFX extends Application {
+    VBox root = new VBox(10);
 
-    public static void main(String[] args) {
-        launch(args);
-    }
-
-    @Override
-    public void start(Stage primaryStage) {
-
-        //create root node
-        VBox root = new VBox(10);
+    /**
+     * makes a root node to put in the board.
+     * creates button to click to roll
+     * creates two nodes for images of the die
+     */
+    public DieView() {
+        //Create root
         root.setPadding(new Insets(15));
 
         //add button to root
         Button btn = new Button("Click to roll");
         root.getChildren().add(btn);
 
+        //get Images from DieImages
         DieImages rollOnce = new DieImages();
         DieImages rollTwice = new DieImages();
         ImageView firstRollImageView = new ImageView();
         ImageView secondRollImageView = new ImageView();
-        //add dies in HBox
+
+        //add dies to HBox
         HBox dieHold = new HBox(10);
         dieHold.getChildren().add(firstRollImageView);
         dieHold.getChildren().add(secondRollImageView);
         root.getChildren().add(dieHold);
 
+        //roll Die
         Die dieRoll = new Die();
-        dieEventHandleButton(btn, rollOnce, rollTwice, firstRollImageView, secondRollImageView, dieHold, dieRoll);
 
-        //create scene & set scene
-        Scene scene = new Scene(root, 400, 300);
-        primaryStage.setScene(scene);
-
-        //add title
-        primaryStage.setTitle("DieFX");
-
-        //show
-        primaryStage.show();
+        //event Handle
+        eventHandleButton(btn, rollOnce, rollTwice, firstRollImageView, secondRollImageView, dieHold, dieRoll);
 
     }
 
-    private void dieEventHandleButton(Button btn, DieImages rollOnce, DieImages rollTwice, ImageView firstRollImageView, ImageView secondRollImageView, HBox dieHold, Die dieRoll) {
+    /**
+     * handles the situation when the button is clicked
+     * @param btn
+     * @param rollOnce
+     * @param rollTwice
+     * @param firstRollImageView
+     * @param secondRollImageView
+     * @param dieHold
+     * @param dieRoll
+     */
+    private void eventHandleButton(Button btn, DieImages rollOnce, DieImages rollTwice, ImageView firstRollImageView, ImageView secondRollImageView, HBox dieHold, Die dieRoll) {
         //event Handle
         btn.setOnAction(event -> {
             int dieRolledNumOne = dieRoll.roll();
@@ -73,6 +72,14 @@ public class DieFX extends Application {
             dieHold.getChildren().set(1, secondRollImageView);
 
         });
+    }
+
+    /**
+     * getter for root
+     * @return returns the root node
+     */
+    public VBox getRoot() {
+        return root;
     }
 
 }
