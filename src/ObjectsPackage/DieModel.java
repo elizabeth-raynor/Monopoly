@@ -1,8 +1,8 @@
-package DiePackage;
+package ObjectsPackage;
 
 import java.util.Random;
 
-public class Die {
+public class DieModel {
     private static Random randNumRoller = new Random();
     private static Random randNumRollerTwo = new Random();
     private static int numSides = 6;
@@ -19,7 +19,7 @@ public class Die {
     }
 
     public static void main(String[] args) {
-        Die dieOne = new Die();
+        DieModel dieOne = new DieModel();
         System.out.println(dieOne.roll());
         System.out.println(dieOne.rollTwo());
     }
