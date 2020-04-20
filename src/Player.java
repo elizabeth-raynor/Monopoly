@@ -17,7 +17,7 @@
  * ****************************************
  */
 
-import java.util.Properties;
+import java.util.ArrayList;
 
 /**
  * Main class used to create a new player object and manipulate its variables
@@ -59,6 +59,10 @@ public class Player {
         int numSpaces = Die.roll() + Die.rollTwo();
         this.position += numSpaces;
     }
+
+    public void addProperty(Property propertyToAdd) { this.properties.add(propertyToAdd); }
+
+    public void removeProperty(Property propertyToRemove) { this.properties.remove(propertyToRemove); }
 
     public void setPosition(int position) {
         this.position = position;
