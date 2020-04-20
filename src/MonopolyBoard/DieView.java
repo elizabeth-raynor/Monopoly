@@ -1,6 +1,6 @@
 package MonopolyBoard;
 
-import ObjectsPackage.DieModel;
+import ObjectsPackage.Die;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -38,7 +38,7 @@ public class DieView extends VBox {
         root.getChildren().add(dieHold);
 
         //roll Die
-        DieModel dieRoll = new DieModel();
+        Die dieRoll = new Die();
 
         //event Handle
         eventHandleButton(btn, rollOnce, rollTwice, firstRollImageView, secondRollImageView, dieHold, dieRoll);
@@ -55,7 +55,7 @@ public class DieView extends VBox {
      * @param dieHold
      * @param dieRoll
      */
-    private void eventHandleButton(Button btn, DieImages rollOnce, DieImages rollTwice, ImageView firstRollImageView, ImageView secondRollImageView, HBox dieHold, DieModel dieRoll) {
+    private void eventHandleButton(Button btn, DieImages rollOnce, DieImages rollTwice, ImageView firstRollImageView, ImageView secondRollImageView, HBox dieHold, Die dieRoll) {
         //event Handle
         btn.setOnAction(event -> {
             int dieRolledNumOne = dieRoll.roll();
