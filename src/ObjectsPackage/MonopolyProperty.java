@@ -189,6 +189,9 @@ public class MonopolyProperty {
         this.numOfHouses += -1;
         // Update currentRent
         switch (this.numOfHouses) {
+            case 0:
+                this.currentRent = this.baseRent;
+                break;
             case 1:
                 this.currentRent = this.oneHouseRent;
                 break;
