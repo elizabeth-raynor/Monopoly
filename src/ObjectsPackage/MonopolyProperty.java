@@ -1,4 +1,4 @@
-/* *****************************************
+package ObjectsPackage;/* *****************************************
  * CSCI205 - Software Engineering and Design
  * Spring 2020
  * Instructor: Prof. Chris Dancy
@@ -10,21 +10,22 @@
  *
  * Project: csci205finalprojectSP2020
  * Package: PACKAGE_NAME
- * Class: Property
+ * Class: ObjectsPackage.Property
  *
  * Description:
  *
  * ****************************************
  */
 
-public class Property {
+
+public class MonopolyProperty {
     // Name of the property (may not be needed?)
     private String propertyName;
 
     // Color group of the property (may not be needed)
     private String propertyColor;
 
-    // Player class needs to be implemented
+    // ObjectsPackage.Player class needs to be implemented
     private Player whoOwns;
 
     // Number of houses on property
@@ -50,7 +51,7 @@ public class Property {
     private int fourHouseRent;
     private int hotelRent;
 
-    public Property(String propertyName, String propertyColor, int costOfProperty, int housePrice, int baseRent, int oneHouseRent, int twoHouseRent, int threeHouseRent, int fourHouseRent, int hotelRent) {
+    public MonopolyProperty(String propertyName, String propertyColor, int costOfProperty, int housePrice, int baseRent, int oneHouseRent, int twoHouseRent, int threeHouseRent, int fourHouseRent, int hotelRent) {
         // Should be constant
         this.propertyName = propertyName;
         this.propertyColor = propertyColor;
@@ -80,11 +81,11 @@ public class Property {
      * Called in order to complete the action of purchasing a property
      * Buyer will have the cost of the property subtracted from their money, and the property added to their list of owned properties
      * The property will have owned changed to true and whoOwns changed to the buyer
-     * @param buyer - an object of Player class
+     * @param buyer - an object of ObjectsPackage.Player class
      */
     public void buyProperty(Player buyer) {
         if(this.whoOwns != null) {
-            // Property is already owned, cannot buy it
+            // ObjectsPackage.Property is already owned, cannot buy it
             System.out.println("This property is already owned. We should never have gotten here. Why is this printing?");
             return;
         } else if(buyer.getMoney() < this.costOfProperty) {
@@ -105,11 +106,11 @@ public class Property {
      * Called in order to complete the action of selling a property
      * Seller will have the cost of the property added to their money, and the property will be removed from their list of owned properties
      * The property will have owned changed to false and whoOwns changed to false
-     * @param seller - an object of Player class
+     * @param seller - an object of ObjectsPackage.Player class
      */
     public void sellProperty(Player seller){
         if(this.whoOwns == null) {
-            // Property is unowned, it should not be able to be sold
+            // ObjectsPackage.Property is unowned, it should not be able to be sold
             System.out.println("This is an unowned property. I don't know how we got to this line. Oops");
             return;
         }
@@ -123,7 +124,7 @@ public class Property {
 
     /**
      * Checks to see if the rentPayer has enough money, and then subtracts the current rent price from their funds
-     * @param rentPayer - an object of Player class
+     * @param rentPayer - an object of ObjectsPackage.Player class
      */
     public void payRent(Player rentPayer){
         if(rentPayer.getMoney() < this.currentRent) {

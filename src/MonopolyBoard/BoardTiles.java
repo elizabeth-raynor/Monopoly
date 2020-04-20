@@ -10,7 +10,7 @@
  *
  * Project: csci205finalprojectsp2020
  * Package: MonopolyBoard
- * Class: Property
+ * Class: ObjectsPackage.Property
  *
  * Description:
  *
