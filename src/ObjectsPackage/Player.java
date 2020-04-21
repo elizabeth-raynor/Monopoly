@@ -57,7 +57,7 @@ public class Player {
      * Helper method used to update a player's position on the board by rolling the die
      */
     private void movePosition() {
-        int numSpaces = Die.roll() + Die.rollTwo();
+        int numSpaces = DieModel.roll() + DieModel.rollTwo();
         this.position += numSpaces;
     }
 
