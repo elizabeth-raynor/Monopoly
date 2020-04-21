@@ -41,6 +41,15 @@ public class BoardView {
     /** The root width */
     private final double BOARD_WIDTH = BOARD_HEIGHT + 270;
 
+    /** The column constraints */
+    private final ColumnConstraints columnEdge = new ColumnConstraints();
+    private final ColumnConstraints columnMiddle = new ColumnConstraints();
+    private final ColumnConstraints columnSidePanel = new ColumnConstraints();
+
+    /** The row contraints */
+    private final RowConstraints rowEdge = new RowConstraints();
+    private final RowConstraints rowMiddle = new RowConstraints();
+
     /** The percent of the board width that each column has */
     private final double EDGE_WIDTH = 9.8;
     private final double MIDDLE_WIDTH = 5.6;
@@ -53,8 +62,6 @@ public class BoardView {
     /** The background color */
     private final Color BACKGROUND = Color.web("#d4ffde");
 
-    /** The monopoly name */
-    private Label monopolyName;
 
 
     /**
@@ -73,18 +80,20 @@ public class BoardView {
         sizeColumns();
         sizeRows();
 
+        // Initialize the board tiles
         initCorners();
         initChance();
         initCommChest();
         initUtils();
         initRR();
         initTax();
-
-        // Initialize all the properties
         initProperties();
 
         // Initialize the die
         initDie();
+
+        // Initialize the player info display
+        initPlayerInfo();
 
         // Initialize the controls
         initControls();
@@ -98,11 +107,8 @@ public class BoardView {
      */
     private void sizeColumns() {
         // Size the columns of the GridPane
-        ColumnConstraints columnEdge = new ColumnConstraints();
         columnEdge.setPercentWidth(EDGE_WIDTH);
-        ColumnConstraints columnMiddle = new ColumnConstraints();
         columnMiddle.setPercentWidth(MIDDLE_WIDTH);
-        ColumnConstraints columnSidePanel = new ColumnConstraints();
         columnSidePanel.setPercentWidth(SIDE_PANEL_WIDTH);
         root.getColumnConstraints().addAll(columnEdge, columnMiddle, columnMiddle, columnMiddle,
                 columnMiddle, columnMiddle, columnMiddle, columnMiddle, columnMiddle, columnMiddle,
@@ -114,9 +120,7 @@ public class BoardView {
      */
     private void sizeRows() {
         // Size the rows of the GridPane
-        RowConstraints rowEdge = new RowConstraints();
         rowEdge.setPercentHeight(EDGE_HEIGHT);
-        RowConstraints rowMiddle = new RowConstraints();
         rowMiddle.setPercentHeight(MIDDLE_HEIGHT);
         root.getRowConstraints().addAll(rowEdge, rowMiddle, rowMiddle, rowMiddle, rowMiddle, rowMiddle,
                 rowMiddle, rowMiddle, rowMiddle, rowMiddle, rowEdge);
@@ -201,8 +205,10 @@ public class BoardView {
         root.add(boardwalk, 10,9);
     }
 
+    /**
+     * Initialize the utilities
+     */
     private void initUtils() {
-        // UTILITIES
         BoardTiles waterWorks = new BoardTiles("WATER WORKS", "src/BoardImages/WaterWorks.png",40);
 //        BoardTiles waterWorks = new BoardTiles("WATER WORKS", 150);
         root.add(waterWorks, 8, 0);
@@ -212,9 +218,10 @@ public class BoardView {
         root.add(electricity, 0, 8);
     }
 
+    /**
+     * Initialize the railroads
+     */
     private void initRR() {
-        // RAILROADS
-
         BoardTiles boRR = new BoardTiles("B. & O. RAILROAD", "src/BoardImages/Train.png", 200, 35);
 //        BoardTiles boRR = new BoardTiles("B. & O. RAILROAD", 200);
         root.add(boRR,5, 0);
@@ -233,8 +240,10 @@ public class BoardView {
         root.add(shortRR, 10, 5);
     }
 
+    /**
+     * Initialize the tax tiles
+     */
     private void initTax() {
-        // TAX
 //        BoardTiles luxTax = new BoardTiles("LUXURY TAX, PAY", "src/BoardImages/LuxuryTax.png", 100);
         BoardTiles luxTax = new BoardTiles("LUXURY TAX, PAY",  100);
         root.add(luxTax, 10, 8);
@@ -244,9 +253,10 @@ public class BoardView {
         root.add(incomeTax, 6, 10);
     }
 
+    /**
+     * Initialize the corners
+     */
     private void initCorners() {
-
-        // CORNERS
         root.add(new BoardTiles("FREE PARKING", "src/BoardImages/FreeParking.png", 50), 0,0);
 //        root.add(new BoardTiles("FREE PARKING"), 0,0);
 
@@ -266,6 +276,9 @@ public class BoardView {
 
     }
 
+    /**
+     * Initialize the community chest tiles
+     */
     private void initCommChest() {
         // COMMUNITY CHEST
         BoardTiles commChest1 = new BoardTiles("COMMUNITY CHEST", "src/BoardImages/CommunityChest.png", 35);
@@ -281,8 +294,10 @@ public class BoardView {
         root.add(commChest3, 10, 3);
     }
 
+    /**
+     * Initialize the chance tiles
+     */
     private void initChance() {
-        // CHANCE
         BoardTiles orangeChance = new BoardTiles("CHANCE", "src/BoardImages/BlueChance.png", 20);
 //        BoardTiles orangeChance = new BoardTiles("CHANCE");
         root.add(orangeChance, 10, 6);
@@ -300,13 +315,25 @@ public class BoardView {
      * Initializes the die
      */
     private void initDie() {
-
         DieView dieView = new DieView();
         VBox dieViewRoot = dieView.getRoot();
-
         dieViewRoot.setPrefSize(Double.MAX_VALUE, Double.MAX_VALUE);
         dieViewRoot.setBorder(new Border(new BorderStroke(null, BorderStrokeStyle.SOLID, null, null)));
         root.add(dieViewRoot, 11, 0, 1, 2);
+
+    }
+
+    /**
+     * Initialize the player info
+     */
+    private void initPlayerInfo() {
+        // Mark off where the player info goes // TODO remove this and add the player info
+        Label playerInfo = new Label("PLAYER INFO");
+        playerInfo.setTextAlignment(TextAlignment.CENTER);
+        playerInfo.setAlignment(Pos.CENTER);
+        playerInfo.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+        playerInfo.setBorder(new Border(new BorderStroke(null, BorderStrokeStyle.SOLID, null, null)));
+        root.add(playerInfo, 11, 2, 1, 3);
 
     }
 
@@ -320,27 +347,15 @@ public class BoardView {
         controls.setAlignment(Pos.CENTER);
         controls.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
         controls.setBorder(new Border(new BorderStroke(null, BorderStrokeStyle.SOLID, null, null)));
-        root.add(controls, 11, 2, 1, 9);
+        root.add(controls, 11, 5, 1, 6);
     }
 
     /**
-     * Intializes the Monopoly Name in the Middle
+     * Initializes the Monopoly Name in the Middle
      */
     private void initMonopolyName() {
-//        monopolyName = new Label("MONOPOLY");
-//        monopolyName.setTextFill(Color.WHITE);
-//        monopolyName.setAlignment(Pos.CENTER);
-//        monopolyName.setFont(new Font("Arial", 40));
-//        monopolyName.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
-//        monopolyName.setBackground(new Background(new BackgroundFill(Color.RED, null, null)));
-//        monopolyName.setRotate(325);
-//        root.add(monopolyName, 3,5, 5, 1);
-
-
         File image = new File("src/BoardImages/MonopolyLogo.png");
         Image monopolyImage = new Image(image.toURI().toString());
-        System.out.println(monopolyImage.getHeight());
-        System.out.println(monopolyImage.getWidth());
         ImageView monopolyLogo = new ImageView(monopolyImage);
         monopolyLogo.setPreserveRatio(true);
         monopolyLogo.setFitHeight(100);
