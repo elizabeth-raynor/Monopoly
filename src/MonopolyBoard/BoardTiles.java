@@ -20,11 +20,15 @@ package MonopolyBoard;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
+
+import java.io.File;
 
 
 public class BoardTiles extends VBox {
@@ -44,6 +48,8 @@ public class BoardTiles extends VBox {
     /** The monopoly font */
     private String font = "Kabel Heavy";
 
+    /** The image of the tile */
+    private String imagePath;
 
     /**
      * Constructor for properties
@@ -62,6 +68,13 @@ public class BoardTiles extends VBox {
      * Constructor for corners, community chest and chance tiles
      * @param sName the name of the property as a string
      */
+    public BoardTiles(String sName, String imagePath, double imageSize) {
+        this.sName = sName;
+        this.imagePath = imagePath;
+        formatCornerChanComm();
+        addImage(imageSize);
+    }
+
     public BoardTiles(String sName) {
         this.sName = sName;
         formatCornerChanComm();
@@ -72,7 +85,16 @@ public class BoardTiles extends VBox {
      * @param sName the name of the property as a string
      * @param iCost the cost as an integer
      */
-    public BoardTiles(String sName, int iCost) {
+    public BoardTiles(String sName, String imagePath, int iCost, double imageSize) {
+        this.sName = sName;
+        this.imagePath = imagePath;
+        this.iCost = iCost;
+        formatUtRail();
+        addImage(imageSize);
+    }
+
+
+    public BoardTiles(String sName,  int iCost) {
         this.sName = sName;
         this.iCost = iCost;
         formatUtRail();
@@ -87,8 +109,9 @@ public class BoardTiles extends VBox {
 //        System.out.println();
 //        System.out.println(this.getWidth());
         // TODO need to figure out how to fit rectangle to size of the tile
-        this.getChildren().add(new Rectangle(55, 15, this.color));
-        Label lName = getNameLabel();
+        this.setSpacing(1);
+        this.getChildren().add(new Rectangle(60, 10, this.color));
+        Label lName = addNameLabel();
         this.getChildren().add(lName);
         Label lCost = getCostLabel();
         this.getChildren().add(lCost);
@@ -101,9 +124,10 @@ public class BoardTiles extends VBox {
     private void formatCornerChanComm() {
         this.setAlignment(Pos.CENTER);
 //        this.setPrefSize(this.height,this.height);
-        Label lName = getNameLabel();
+        Label lName = addNameLabel();
         this.getChildren().add(lName);
         this.setBorder(border);
+
     }
 
     /**
@@ -111,7 +135,7 @@ public class BoardTiles extends VBox {
      */
     private void formatUtRail() {
         this.setAlignment(Pos.CENTER);
-        Label lName = getNameLabel();
+        Label lName = addNameLabel();
         this.getChildren().add(lName);
         Label lCost = getCostLabel();
         this.getChildren().add(lCost);
@@ -121,12 +145,12 @@ public class BoardTiles extends VBox {
     /**
      * @return Label with the name of the tile
      */
-    private Label getNameLabel() {
+    private Label addNameLabel() {
         Label lName = new Label(sName);
         lName.setTextAlignment(TextAlignment.CENTER);
         lName.setWrapText(true);
         lName.setAlignment(Pos.CENTER);
-        lName.setFont(new Font(font, 11));
+        lName.setFont(new Font(font, 9));
         lName.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
         return lName;
     }
@@ -138,5 +162,14 @@ public class BoardTiles extends VBox {
         Label lCost = new Label(Integer.toString(iCost));
         lCost.setFont(new Font(font, 11));
         return lCost;
+    }
+
+    private void addImage(double imageSize) {
+        File imageFile = new File(this.imagePath);
+        Image image = new Image(imageFile.toURI().toString());
+        ImageView imageView = new ImageView(image);
+        imageView.setFitWidth(imageSize);
+        imageView.setPreserveRatio(true);
+        this.getChildren().add(imageView);
     }
 }
