@@ -175,7 +175,7 @@ public class BoardView {
         BoardTiles new_york = new BoardTiles(Color.ORANGE, "NEW YORK AVENUE", 200);
         root.add(new_york, 0, 1);
 
-        BoardTiles tennessee = new BoardTiles(Color.ORANGE, "TENNESSEE", 180);
+        BoardTiles tennessee = new BoardTiles(Color.ORANGE, "TENNESSEE AVENUE", 180);
         root.add(tennessee, 0, 2);
 
         BoardTiles stJame = new BoardTiles(Color.ORANGE, "ST. JAMES", 180);
@@ -245,8 +245,8 @@ public class BoardView {
      * Initialize the tax tiles
      */
     private void initTax() {
-        BoardTiles luxTax = new BoardTiles("LUXURY TAX, PAY", "src/BoardImages/LuxuryTax.png", 30);
-//        BoardTiles luxTax = new BoardTiles("LUXURY TAX, PAY",  100);
+//        BoardTiles luxTax = new BoardTiles("LUXURY TAX, PAY", "src/BoardImages/LuxuryTax.png", 30);
+        BoardTiles luxTax = new BoardTiles("LUXURY TAX, PAY",  100);
         root.add(luxTax, 10, 8);
 
 //        BoardTiles incomeTax = new BoardTiles("INCOME TAX, PAY", "src/BoardImages/LuxuryTax.png", 200);
@@ -270,7 +270,7 @@ public class BoardView {
         File fGo = new File("src/BoardImages/GoArrow.png");
         ImageView go = new ImageView(new Image(fGo.toURI().toString()));
         go.setPreserveRatio(true);
-        go.setFitWidth(90);
+        go.setFitWidth(95);
         root.add(go, 10, 10);
 
 
