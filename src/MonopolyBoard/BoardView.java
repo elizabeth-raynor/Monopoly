@@ -27,6 +27,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.TextAlignment;
 
 import java.io.File;
+import java.io.FileInputStream;
 
 
 public class BoardView {
@@ -71,7 +72,7 @@ public class BoardView {
 
         // Initialize and format the root
         root = new GridPane();
-        root.setPrefSize(BOARD_WIDTH, BOARD_HEIGHT);
+        root.setMaxSize(BOARD_WIDTH, BOARD_HEIGHT);
 
         // Fill background of root
         root.setBackground(new Background(new BackgroundFill(BACKGROUND, null, null)));
@@ -209,12 +210,12 @@ public class BoardView {
      * Initialize the utilities
      */
     private void initUtils() {
-        BoardTiles waterWorks = new BoardTiles("WATER WORKS", "src/BoardImages/WaterWorks.png",40);
+        BoardTiles waterWorks = new BoardTiles("WATER WORKS", "src/BoardImages/WaterWorks.png",45);
 //        BoardTiles waterWorks = new BoardTiles("WATER WORKS", 150);
         root.add(waterWorks, 8, 0);
 
-//        BoardTiles electricity = new BoardTiles("ELECTRIC COMPANY", "src/BoardImages/Electricity.png", 150);
-        BoardTiles electricity = new BoardTiles("ELECTRIC COMPANY",  150);
+        BoardTiles electricity = new BoardTiles("ELECTRIC COMPANY", "src/BoardImages/LightBulb.png", 20);
+//        BoardTiles electricity = new BoardTiles("ELECTRIC COMPANY",  150);
         root.add(electricity, 0, 8);
     }
 
@@ -244,8 +245,8 @@ public class BoardView {
      * Initialize the tax tiles
      */
     private void initTax() {
-//        BoardTiles luxTax = new BoardTiles("LUXURY TAX, PAY", "src/BoardImages/LuxuryTax.png", 100);
-        BoardTiles luxTax = new BoardTiles("LUXURY TAX, PAY",  100);
+        BoardTiles luxTax = new BoardTiles("LUXURY TAX, PAY", "src/BoardImages/LuxuryTax.png", 30);
+//        BoardTiles luxTax = new BoardTiles("LUXURY TAX, PAY",  100);
         root.add(luxTax, 10, 8);
 
 //        BoardTiles incomeTax = new BoardTiles("INCOME TAX, PAY", "src/BoardImages/LuxuryTax.png", 200);
@@ -264,14 +265,22 @@ public class BoardView {
 //        BoardTiles goToJail = new BoardTiles("GO TO JAIL");
         root.add(goToJail, 10, 0);
 
-//        BoardTiles go = new BoardTiles("GO", "src/BoardImages/GoArrow.png");
-        BoardTiles go = new BoardTiles("GO");
+//        BoardTiles go = new BoardTiles("", "src/BoardImages/GoArrow.png", 50);
+//        BoardTiles go = new BoardTiles("GO");
+        File fGo = new File("src/BoardImages/GoArrow.png");
+        ImageView go = new ImageView(new Image(fGo.toURI().toString()));
+        go.setPreserveRatio(true);
+        go.setFitWidth(90);
         root.add(go, 10, 10);
 
-//        BoardTiles jail = new BoardTiles("JAIL", "src/BoardImages/GoToJail.png");
-        BoardTiles jail = new BoardTiles("JAIL");
+
+//        BoardTiles jail = new BoardTiles("", , 70);
+//        BoardTiles jail = new BoardTiles("JAIL");
+        File fJail = new File("src/BoardImages/Jail.png");
+        ImageView jail = new ImageView(new Image(fJail.toURI().toString()));
+        jail.setPreserveRatio(true);
+        jail.setFitWidth(94);
         root.add(jail, 0, 10);
-//        initCommChest();
 
 
     }
