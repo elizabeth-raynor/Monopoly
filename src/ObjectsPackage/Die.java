@@ -1,4 +1,4 @@
-package DiePackage;
+package ObjectsPackage;
 
 import java.util.Random;
 

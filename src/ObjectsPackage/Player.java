@@ -1,3 +1,4 @@
+package ObjectsPackage;
 /* *****************************************
  * CSCI205 - Software Engineering and Design
  * Spring 2020
@@ -10,14 +11,12 @@
  *
  * Project: csci205finalprojectsp2020
  * Package: PACKAGE_NAME
- * Class: Player
+ * Class: DiePackage.Player
  *
  * Description: Class used to set up player object
  *
  * ****************************************
  */
-
-import java.util.Properties;
 
 /**
  * Main class used to create a new player object and manipulate its variables
@@ -25,16 +24,16 @@ import java.util.Properties;
  */
 public class Player {
 
-    /** Player's game token */
+    /** DiePackage.Player's game token */
     private String token;
-    /** Player name */
+    /** DiePackage.Player name */
     private String name;
     /** Initial amount Amount of money player has */
     private int money = 1500;
     /** Initializes player's position on the board */
     private int position = 0;
     /** Array of properties that they own */
-    private ArrayList<Property> properties = new ArrayList<Property>();
+    //private ArrayList<Property> properties = new ArrayList<Property>();
 
     /** Empty constructor
      */
@@ -49,7 +48,7 @@ public class Player {
         this.token = token;
         this.position = position;
         this.money = money;
-        this.properties = properties;
+        //this.properties = properties;
     }
 
     /**
@@ -84,7 +83,7 @@ public class Player {
         this.money = money;
     }
 
-    public ArrayList<Property> getProperties() {
+    /*public ArrayList<Property> getProperties() {
         return properties;
-    }
+    }*/
 }

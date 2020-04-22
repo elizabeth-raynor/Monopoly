@@ -28,7 +28,6 @@ import javafx.scene.text.TextAlignment;
 
 public class BoardView {
 
-
     /** The root of the scene */
     private final GridPane root;
 
