@@ -1,5 +1,4 @@
-package ObjectsPackage;
-/* *****************************************
+package ObjectsPackage;/* *****************************************
  * CSCI205 - Software Engineering and Design
  * Spring 2020
  * Instructor: Prof. Chris Dancy
@@ -11,12 +10,15 @@ package ObjectsPackage;
  *
  * Project: csci205finalprojectsp2020
  * Package: PACKAGE_NAME
- * Class: DiePackage.Player
+ * Class: ObjectsPackage.Player
  *
  * Description: Class used to set up player object
  *
  * ****************************************
  */
+
+
+import java.util.ArrayList;
 
 /**
  * Main class used to create a new player object and manipulate its variables
@@ -24,16 +26,16 @@ package ObjectsPackage;
  */
 public class Player {
 
-    /** DiePackage.Player's game token */
+    /** ObjectsPackage.Player's game token */
     private String token;
-    /** DiePackage.Player name */
+    /** ObjectsPackage.Player name */
     private String name;
     /** Initial amount Amount of money player has */
     private int money = 1500;
     /** Initializes player's position on the board */
     private int position = 0;
     /** Array of properties that they own */
-    //private ArrayList<Property> properties = new ArrayList<Property>();
+    private ArrayList<MonopolyProperty> properties = new ArrayList<MonopolyProperty>();
 
     /** Empty constructor
      */
@@ -48,16 +50,20 @@ public class Player {
         this.token = token;
         this.position = position;
         this.money = money;
-        //this.properties = properties;
+        this.properties = properties;
     }
 
     /**
      * Helper method used to update a player's position on the board by rolling the die
      */
     private void movePosition() {
-        int numSpaces = Die.roll() + Die.rollTwo();
+        int numSpaces = DieModel.roll() + DieModel.rollTwo();
         this.position += numSpaces;
     }
+
+    public void addProperty(MonopolyProperty propertyToAdd) { this.properties.add(propertyToAdd); }
+
+    public void removeProperty(MonopolyProperty propertyToRemove) { this.properties.remove(propertyToRemove); }
 
     public void setPosition(int position) {
         this.position = position;
@@ -71,6 +77,14 @@ public class Player {
         return token;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public void setToken(String token) {
         this.token = token;
     }
@@ -79,11 +93,12 @@ public class Player {
         return money;
     }
 
+
     public void setMoney(int money) {
         this.money = money;
     }
 
-    /*public ArrayList<Property> getProperties() {
+    public ArrayList<MonopolyProperty> getProperties() {
         return properties;
-    }*/
+    }
 }

@@ -6,47 +6,53 @@ import java.io.File;
 
 public class DieImages {
 
-    private int dieNum;
     private Image diePic;
 
+    /**
+     * sets the number rolled to an image inside the DiceImagesStore folder
+     * calls createDiceImageView
+     * @param dieRolled
+     * @return the image
+     */
     public Image setDiceNumToImage(int dieRolled) {
 
+        //get image from path and set picture to die
         if (dieRolled == 1) {
-            Image dieOneRolled = createDiceImageView("/Users/amishachhetri/Documents/CSCI_205FinalP/csci205finalprojectsp2020/DiceImagesStore/dice1.png");
+            Image dieOneRolled = createDiceImageView("src/DiceImagesStore/dice1.png");
             diePic = dieOneRolled;
         }
         if (dieRolled == 2) {
-            Image dieTwoRolled = createDiceImageView("/Users/amishachhetri/Documents/CSCI_205FinalP/csci205finalprojectsp2020/DiceImagesStore/dice2.png");
+            Image dieTwoRolled = createDiceImageView("src/DiceImagesStore/dice2.png");
             diePic = dieTwoRolled;
         }
         if (dieRolled ==3) {
-            Image dieThreeRolled = createDiceImageView("/Users/amishachhetri/Documents/CSCI_205FinalP/csci205finalprojectsp2020/DiceImagesStore/dice3.png");
+            Image dieThreeRolled = createDiceImageView("src/DiceImagesStore/dice3.png");
             diePic = dieThreeRolled;
         }
         if (dieRolled ==4) {
-            Image dieFourRolled = createDiceImageView("/Users/amishachhetri/Documents/CSCI_205FinalP/csci205finalprojectsp2020/DiceImagesStore/dice4.png");
+            Image dieFourRolled = createDiceImageView("src/DiceImagesStore/dice4.png");
             diePic = dieFourRolled;
         }
         if (dieRolled == 5) {
-            Image dieFiveRolled = createDiceImageView("/Users/amishachhetri/Documents/CSCI_205FinalP/csci205finalprojectsp2020/DiceImagesStore/dice5.png");
+            Image dieFiveRolled = createDiceImageView("src/DiceImagesStore/dice5.png");
             diePic = dieFiveRolled;
         }
         if (dieRolled == 6) {
-            Image dieSixRolled = createDiceImageView("/Users/amishachhetri/Documents/CSCI_205FinalP/csci205finalprojectsp2020/DiceImagesStore/dice6.png");
+            Image dieSixRolled = createDiceImageView("src/DiceImagesStore/dice6.png");
             diePic = dieSixRolled;
         }
         return diePic;
     }
 
+    /**
+     * uses the path to get to the image
+     * @param path
+     * @return the die image for that path
+     */
     public Image createDiceImageView(String path) {
         File file = new File(path);
         Image dieImageFromPath = new Image(file.toURI().toString());
-//        ImageView dieImageView = new ImageView(dieImageFromPath);
-//        dieImageView.setImage(dieImageFromPath);
         return dieImageFromPath;
     }
 
-//    public ImageView getDiePic() {
-//        return diePic;
-//    }
 }

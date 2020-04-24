@@ -17,10 +17,11 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-import java.io.File;
-
 //import java.awt.*;
 
+/**
+ * This class has a pop up window that would simulate a player choosing their token
+ */
 public class TokenMain extends Application {
 
     /** initialize root      */
@@ -48,11 +49,16 @@ public class TokenMain extends Application {
     private Label resultLabel = new Label();
 
 
+    /**
+     * launches the pop up window
+     * @param args
+     */
     public static void main(String[] args) {
         launch(args);
     }
 
     @Override
+    /** setting the scene */
     public void start(Stage primaryStage) {
         initPlayerInput();
         initTokenDropDown();
@@ -71,13 +77,14 @@ public class TokenMain extends Application {
         primaryStage.show();
     }
 
+    /** make button actually display player token*/
     private void eventHandle() {
         // updating token image based on drop down choice once clicked
         btnShowToken.setOnAction(event -> {
             tokenChoice = tokenDropDown.getValue();
-            tokenImageView.setImage(setStringToTokenImage(tokenChoice));
+            tokenImageView.setImage(TokenView.setStringToTokenImage(tokenChoice));
             playerName = textFieldInputName.getText();
-            resultLabel.setText("Player " + playerName + " chose to use " + getTokenChoice());
+            resultLabel.setText("Player " + playerName + " chose to use the " + getTokenChoice());
         });
     }
 
@@ -112,57 +119,6 @@ public class TokenMain extends Application {
         playerPane.setAlignment(Pos.TOP_CENTER);
     }
 
-    /** Helper method used get the right image
-     * @param tokenName String representing user's choice in dropdown menu
-     * @return actual image of token
-     */
-    public Image setStringToTokenImage(String tokenName) {
-        switch (tokenName) {
-            case "cannon":
-                tokenImage = createImage("src/TokenImageStore/cannon.png");
-                break;
-            case "car":
-                tokenImage = createImage("src/TokenImageStore/car.png");
-                break;
-            case "dog":
-                tokenImage = createImage("src/TokenImageStore/dog.png");
-                break;
-            case "hat":
-                tokenImage = createImage("src/TokenImageStore/hat.png");
-                break;
-            case "horse":
-                tokenImage = createImage("src/TokenImageStore/horse.png");
-                break;
-            case "moneybag":
-                tokenImage = createImage("src/TokenImageStore/moneybag.png");
-                break;
-            case "penguin":
-                tokenImage = createImage("src/TokenImageStore/penguin.png");
-                break;
-            case "purse":
-                tokenImage = createImage("src/TokenImageStore/purse.png");
-                break;
-            case "shoe":
-                tokenImage  = createImage("src/TokenImageStore/shoe.png");
-                break;
-            case "wheelbarrow":
-                tokenImage  = createImage("src/TokenImageStore/wheelbarrow.png");
-                break;
-        }
-        return tokenImage;
-    }
-
-    /**
-     * Helper method used to convert a URI into abstract pathname
-     * @param path abstract pathname
-     * @return image from the converted path
-     */
-    private Image createImage(String path) {
-        File file = new File(path);
-        Image imageFromPath = new Image(file.toURI().toString());
-        return imageFromPath;
-    }
-
     /**
      * get name from player's input
      * @return string version of player name
@@ -171,6 +127,10 @@ public class TokenMain extends Application {
         return textFieldInputName.getText();
     }
 
+    /**
+     * get token choice
+     * @return
+     */
     public String getTokenChoice() {
         return tokenChoice;
     }

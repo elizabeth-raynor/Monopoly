@@ -10,7 +10,7 @@
  *
  * Project: csci205finalprojectsp2020
  * Package: MonopolyBoard
- * Class: Property
+ * Class: ObjectsPackage.Property
  *
  * Description:
  *
@@ -20,11 +20,14 @@ package MonopolyBoard;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
+import java.io.File;
 
 
 public class BoardTiles extends VBox {
@@ -44,6 +47,8 @@ public class BoardTiles extends VBox {
     /** The monopoly font */
     private String font = "Kabel Heavy";
 
+    /** The image of the tile */
+    private String imagePath;
 
     /**
      * Constructor for properties
@@ -59,8 +64,18 @@ public class BoardTiles extends VBox {
     }
 
     /**
-     * Constructor for corners, community chest and chance tiles
+     * Constructor for corners, community chest and chance tiles with an image
      * @param sName the name of the property as a string
+     */
+    public BoardTiles(String sName, String imagePath, double imageSize) {
+        this.sName = sName;
+        formatCornerChanComm();
+        addImage(imageSize, imagePath);
+    }
+
+    /**
+     * Constructor for corners, community chest, and change tiles without an image
+     * @param sName
      */
     public BoardTiles(String sName) {
         this.sName = sName;
@@ -68,11 +83,24 @@ public class BoardTiles extends VBox {
     }
 
     /**
-     * Constructor for utilities and railroads
+     * Constructor for utilities and railroads with an image
      * @param sName the name of the property as a string
      * @param iCost the cost as an integer
      */
-    public BoardTiles(String sName, int iCost) {
+    public BoardTiles(String sName, String imagePath, int iCost, double imageSize) {
+        this.sName = sName;
+        this.iCost = iCost;
+        formatUtRail();
+        addImage(imageSize, imagePath);
+    }
+
+
+    /**
+     * Constructor for utilities and rails without an image
+     * @param sName
+     * @param iCost
+     */
+    public BoardTiles(String sName,  int iCost) {
         this.sName = sName;
         this.iCost = iCost;
         formatUtRail();
@@ -83,12 +111,9 @@ public class BoardTiles extends VBox {
      */
     private void formatProperty() {
         this.setAlignment(Pos.CENTER);
-//        this.setSpacing(this.getHeight()/3); ****These don't work, this.getHeight returns 0, not sure how to get height of the node
-//        System.out.println();
-//        System.out.println(this.getWidth());
         // TODO need to figure out how to fit rectangle to size of the tile
-        this.getChildren().add(new Rectangle(55, 15, this.color));
-        Label lName = getNameLabel();
+        this.getChildren().add(new Rectangle(60, 10, this.color));
+        Label lName = addNameLabel();
         this.getChildren().add(lName);
         Label lCost = getCostLabel();
         this.getChildren().add(lCost);
@@ -100,10 +125,10 @@ public class BoardTiles extends VBox {
      */
     private void formatCornerChanComm() {
         this.setAlignment(Pos.CENTER);
-//        this.setPrefSize(this.height,this.height);
-        Label lName = getNameLabel();
+        Label lName = addNameLabel();
         this.getChildren().add(lName);
         this.setBorder(border);
+
     }
 
     /**
@@ -111,7 +136,7 @@ public class BoardTiles extends VBox {
      */
     private void formatUtRail() {
         this.setAlignment(Pos.CENTER);
-        Label lName = getNameLabel();
+        Label lName = addNameLabel();
         this.getChildren().add(lName);
         Label lCost = getCostLabel();
         this.getChildren().add(lCost);
@@ -121,12 +146,12 @@ public class BoardTiles extends VBox {
     /**
      * @return Label with the name of the tile
      */
-    private Label getNameLabel() {
+    private Label addNameLabel() {
         Label lName = new Label(sName);
         lName.setTextAlignment(TextAlignment.CENTER);
         lName.setWrapText(true);
         lName.setAlignment(Pos.CENTER);
-        lName.setFont(new Font(font, 11));
+        lName.setFont(new Font(font, 9));
         lName.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
         return lName;
     }
@@ -138,5 +163,18 @@ public class BoardTiles extends VBox {
         Label lCost = new Label(Integer.toString(iCost));
         lCost.setFont(new Font(font, 11));
         return lCost;
+    }
+
+    /**
+     * Create the image to add to the board
+     * @param imageSize
+     */
+    private void addImage(double imageSize, String imagePath) {
+        File imageFile = new File(imagePath);
+        Image image = new Image(imageFile.toURI().toString());
+        ImageView imageView = new ImageView(image);
+        imageView.setFitWidth(imageSize);
+        imageView.setPreserveRatio(true);
+        this.getChildren().add(imageView);
     }
 }
