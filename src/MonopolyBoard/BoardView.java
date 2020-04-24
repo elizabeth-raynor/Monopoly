@@ -27,7 +27,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.TextAlignment;
 
 import java.io.File;
-import java.io.FileInputStream;
 
 
 public class BoardView {
@@ -47,18 +46,18 @@ public class BoardView {
     private final ColumnConstraints columnMiddle = new ColumnConstraints();
     private final ColumnConstraints columnSidePanel = new ColumnConstraints();
 
-    /** The row contraints */
+    /** The row constraints */
     private final RowConstraints rowEdge = new RowConstraints();
     private final RowConstraints rowMiddle = new RowConstraints();
 
     /** The percent of the board width that each column has */
-    private final double EDGE_WIDTH = 9.8;
-    private final double MIDDLE_WIDTH = 5.6;
+    private final double EDGE_COL_WIDTH = 9.8;
+    private final double MIDDLE_COL_WIDTH = 5.6;
     private final double SIDE_PANEL_WIDTH = 30;
 
     /** The percent of the board height that each row has */
-    private final double EDGE_HEIGHT = 14;
-    private final double MIDDLE_HEIGHT = 8;
+    private final double EDGE_ROW_HEIGHT = 14;
+    private final double MIDDLE_ROW_HEIGHT = 8;
 
     /** The background color */
     private final Color BACKGROUND = Color.web("#d4ffde");
@@ -107,9 +106,8 @@ public class BoardView {
      * Size the columns of the GridPane
      */
     private void sizeColumns() {
-        // Size the columns of the GridPane
-        columnEdge.setPercentWidth(EDGE_WIDTH);
-        columnMiddle.setPercentWidth(MIDDLE_WIDTH);
+        columnEdge.setPercentWidth(EDGE_COL_WIDTH);
+        columnMiddle.setPercentWidth(MIDDLE_COL_WIDTH);
         columnSidePanel.setPercentWidth(SIDE_PANEL_WIDTH);
         root.getColumnConstraints().addAll(columnEdge, columnMiddle, columnMiddle, columnMiddle,
                 columnMiddle, columnMiddle, columnMiddle, columnMiddle, columnMiddle, columnMiddle,
@@ -120,9 +118,8 @@ public class BoardView {
      * Size the rows of the GridPane
      */
     private void sizeRows() {
-        // Size the rows of the GridPane
-        rowEdge.setPercentHeight(EDGE_HEIGHT);
-        rowMiddle.setPercentHeight(MIDDLE_HEIGHT);
+        rowEdge.setPercentHeight(EDGE_ROW_HEIGHT);
+        rowMiddle.setPercentHeight(MIDDLE_ROW_HEIGHT);
         root.getRowConstraints().addAll(rowEdge, rowMiddle, rowMiddle, rowMiddle, rowMiddle, rowMiddle,
                 rowMiddle, rowMiddle, rowMiddle, rowMiddle, rowEdge);
     }
@@ -210,12 +207,10 @@ public class BoardView {
      * Initialize the utilities
      */
     private void initUtils() {
-        BoardTiles waterWorks = new BoardTiles("WATER WORKS", "src/BoardImages/WaterWorks.png",45);
-//        BoardTiles waterWorks = new BoardTiles("WATER WORKS", 150);
+        BoardTiles waterWorks = new BoardTiles("WATER WORKS", "src/BoardImages/WaterWorks.png", 150,30);
         root.add(waterWorks, 8, 0);
 
-        BoardTiles electricity = new BoardTiles("ELECTRIC COMPANY", "src/BoardImages/LightBulb.png", 20);
-//        BoardTiles electricity = new BoardTiles("ELECTRIC COMPANY",  150);
+        BoardTiles electricity = new BoardTiles("ELECTRIC COMPANY", "src/BoardImages/LightBulb.png", 150,18);
         root.add(electricity, 0, 8);
     }
 
@@ -224,20 +219,15 @@ public class BoardView {
      */
     private void initRR() {
         BoardTiles boRR = new BoardTiles("B. & O. RAILROAD", "src/BoardImages/Train.png", 200, 35);
-//        BoardTiles boRR = new BoardTiles("B. & O. RAILROAD", 200);
         root.add(boRR,5, 0);
 
         BoardTiles readingRR = new BoardTiles("READING RAILROAD", "src/BoardImages/Train.png", 200, 35);
-//        BoardTiles readingRR = new BoardTiles("READING RAILROAD", 200);
         root.add(readingRR, 5, 10);
 
-//        BoardTiles paRR = new BoardTiles("PENNSYLVANIA RAILROAD", "src/BoardImages/Train.png", 200, 35);
-        BoardTiles paRR = new BoardTiles("PENNSYLVANIA RAILROAD", 200);
-//        paRR.setRotate(90);
+        BoardTiles paRR = new BoardTiles("PENNSYLVANIA RAILROAD", "src/BoardImages/Train.png", 200, 18);
         root.add(paRR, 0, 5);
 
-//        BoardTiles shortRR = new BoardTiles("SHORT LINE", "src/BoardImages/Train.png",200);
-        BoardTiles shortRR = new BoardTiles("SHORT LINE",200);
+        BoardTiles shortRR = new BoardTiles("SHORT LINE", "src/BoardImages/Train.png",200, 18);
         root.add(shortRR, 10, 5);
     }
 
@@ -245,11 +235,9 @@ public class BoardView {
      * Initialize the tax tiles
      */
     private void initTax() {
-//        BoardTiles luxTax = new BoardTiles("LUXURY TAX, PAY", "src/BoardImages/LuxuryTax.png", 30);
-        BoardTiles luxTax = new BoardTiles("LUXURY TAX, PAY",  100);
+        BoardTiles luxTax = new BoardTiles("LUXURY TAX, PAY", "src/BoardImages/LuxuryTax.png", 100, 15);
         root.add(luxTax, 10, 8);
 
-//        BoardTiles incomeTax = new BoardTiles("INCOME TAX, PAY", "src/BoardImages/LuxuryTax.png", 200);
         BoardTiles incomeTax = new BoardTiles("INCOME TAX, PAY", 200);
         root.add(incomeTax, 6, 10);
     }
@@ -258,28 +246,25 @@ public class BoardView {
      * Initialize the corners
      */
     private void initCorners() {
+        // Free Parking
         root.add(new BoardTiles("FREE PARKING", "src/BoardImages/FreeParking.png", 50), 0,0);
-//        root.add(new BoardTiles("FREE PARKING"), 0,0);
 
+        // Go to Jail
         BoardTiles goToJail = new BoardTiles("GO TO JAIL", "src/BoardImages/GoToJail.png", 50);
-//        BoardTiles goToJail = new BoardTiles("GO TO JAIL");
         root.add(goToJail, 10, 0);
 
-//        BoardTiles go = new BoardTiles("", "src/BoardImages/GoArrow.png", 50);
-//        BoardTiles go = new BoardTiles("GO");
+        // GO image
         File fGo = new File("src/BoardImages/GoArrow.png");
         ImageView go = new ImageView(new Image(fGo.toURI().toString()));
         go.setPreserveRatio(true);
-        go.setFitWidth(95);
+        go.setFitWidth(90);
         root.add(go, 10, 10);
 
-
-//        BoardTiles jail = new BoardTiles("", , 70);
-//        BoardTiles jail = new BoardTiles("JAIL");
+        // Jail iamge
         File fJail = new File("src/BoardImages/Jail.png");
         ImageView jail = new ImageView(new Image(fJail.toURI().toString()));
-        jail.setPreserveRatio(true);
-        jail.setFitWidth(94);
+        jail.setFitWidth(111);
+        jail.setFitHeight(90);
         root.add(jail, 0, 10);
 
 
@@ -289,17 +274,13 @@ public class BoardView {
      * Initialize the community chest tiles
      */
     private void initCommChest() {
-        // COMMUNITY CHEST
         BoardTiles commChest1 = new BoardTiles("COMMUNITY CHEST", "src/BoardImages/CommunityChest.png", 35);
-//        BoardTiles commChest1 = new BoardTiles("COMMUNITY CHEST");
         root.add(commChest1, 0,3 );
 
-        BoardTiles commChest2 = new BoardTiles("COMMUNITY CHEST", "src/BoardImages/CommunityChest.png", 35);
-//        BoardTiles commChest2 = new BoardTiles("COMMUNITY CHEST");
+        BoardTiles commChest2 = new BoardTiles("COMMUNITY CHEST", "src/BoardImages/CommunityChest.png", 45);
         root.add(commChest2, 8, 10);
 
         BoardTiles commChest3 = new BoardTiles("COMMUNITY CHEST", "src/BoardImages/CommunityChest.png", 35);
-//        BoardTiles commChest3 = new BoardTiles("COMMUNITY CHEST");
         root.add(commChest3, 10, 3);
     }
 
@@ -307,16 +288,13 @@ public class BoardView {
      * Initialize the chance tiles
      */
     private void initChance() {
-        BoardTiles orangeChance = new BoardTiles("CHANCE", "src/BoardImages/BlueChance.png", 20);
-//        BoardTiles orangeChance = new BoardTiles("CHANCE");
+        BoardTiles orangeChance = new BoardTiles("CHANCE", "src/BoardImages/BlueChance.png", 18);
         root.add(orangeChance, 10, 6);
 
         BoardTiles blueChance = new BoardTiles("CHANCE", "src/BoardImages/BlueChance.png", 35);
-//        BoardTiles blueChance = new BoardTiles("CHANCE" );
         root.add(blueChance, 2, 0);
 
         BoardTiles pinkChance = new BoardTiles("CHANCE", "src/BoardImages/BlueChance.png", 35);
-//        BoardTiles pinkChance = new BoardTiles("CHANCE");
         root.add(pinkChance, 3, 10);
     }
 
