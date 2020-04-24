@@ -82,6 +82,7 @@ public class BoardTiles extends VBox {
         formatCornerChanComm();
     }
 
+
     /**
      * Constructor for utilities and railroads with an image
      * @param sName the name of the property as a string
