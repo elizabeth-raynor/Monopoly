@@ -249,8 +249,8 @@ public class BoardView {
      */
     private void initDie() {
 
-        DieView dieView = new DieView();
-        VBox dieViewRoot = dieView.getRoot();
+        DieRoll dieRoll = new DieRoll();
+        VBox dieViewRoot = dieRoll.getRoot();
 
         dieViewRoot.setPrefSize(Double.MAX_VALUE, Double.MAX_VALUE);
         dieViewRoot.setBorder(new Border(new BorderStroke(null, BorderStrokeStyle.SOLID, null, null)));
