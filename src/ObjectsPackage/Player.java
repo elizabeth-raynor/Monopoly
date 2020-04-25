@@ -36,6 +36,10 @@ public class Player {
     private int position = 0;
     /** Array of properties that they own */
     private ArrayList<MonopolyProperty> properties = new ArrayList<MonopolyProperty>();
+    /** Number of railroads owned */
+    private int numRailRoadsOwned;
+    /** Number of utilities owned */
+    private int numUtilitiesOwned;
 
     /** Empty constructor
      */
@@ -51,13 +55,14 @@ public class Player {
         this.position = position;
         this.money = money;
         this.properties = properties;
+        this.numRailRoadsOwned = 0;
     }
 
     /**
      * Helper method used to update a player's position on the board by rolling the die
      */
     private void movePosition() {
-        int numSpaces = Die.roll() + Die.rollTwo();
+        int numSpaces = DieModel.roll() + DieModel.rollTwo();
         this.position += numSpaces;
     }
 
@@ -92,4 +97,12 @@ public class Player {
     public ArrayList<MonopolyProperty> getProperties() {
         return properties;
     }
+
+    public int getNumRailRoadsOwned() { return numRailRoadsOwned; }
+
+    public void setNumRailRoadsOwned(int numRailRoadsOwned) { this.numRailRoadsOwned = numRailRoadsOwned; }
+
+    public int getNumUtilitiesOwned() { return numUtilitiesOwned; }
+
+    public void setNumUtilitiesOwned(int numUtilitiesOwned) { this.numUtilitiesOwned = numUtilitiesOwned; }
 }
