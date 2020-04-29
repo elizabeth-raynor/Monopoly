@@ -36,6 +36,8 @@ public class Player {
     private int position = 0;
     /** Array of properties that they own */
     private ArrayList<MonopolyProperty> properties = new ArrayList<MonopolyProperty>();
+    /** The Jail object for this player */
+    private Jail jail;
 
     /** Empty constructor
      */
@@ -51,6 +53,7 @@ public class Player {
         this.position = position;
         this.money = money;
         this.properties = properties;
+        this.jail = new Jail(this);
     }
 
     /**
