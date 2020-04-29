@@ -18,60 +18,23 @@
  */
 package MonopolyBoard;
 
+import ObjectsPackage.Token;
 import javafx.scene.image.Image;
 
 import java.io.File;
 
+/** Method used to view proper token
+ * @author Michelle Pham */
 public class TokenView {
-
-    private static Image tokenImage;
-
-    /** sets the string token name to an image inside TokenImages folder
-     * @param tokenName String representing user's choice (in dropdown menu)
-     * @return actual image of token
-     */
-    static Image setStringToTokenImage(String tokenName) {
-        switch (tokenName) {
-            case "cannon":
-                tokenImage = createImage("src/TokenImageStore/cannon.png");
-                break;
-            case "car":
-                tokenImage = createImage("src/TokenImageStore/car.png");
-                break;
-            case "dog":
-                tokenImage = createImage("src/TokenImageStore/dog.png");
-                break;
-            case "hat":
-                tokenImage = createImage("src/TokenImageStore/hat.png");
-                break;
-            case "horse":
-                tokenImage = createImage("src/TokenImageStore/horse.png");
-                break;
-            case "moneybag":
-                tokenImage = createImage("src/TokenImageStore/moneybag.png");
-                break;
-            case "penguin":
-                tokenImage = createImage("src/TokenImageStore/penguin.png");
-                break;
-            case "purse":
-                tokenImage = createImage("src/TokenImageStore/purse.png");
-                break;
-            case "shoe":
-                tokenImage  = createImage("src/TokenImageStore/shoe.png");
-                break;
-            case "wheelbarrow":
-                tokenImage  = createImage("src/TokenImageStore/wheelbarrow.png");
-                break;
-        }
-        return tokenImage;
-    }
 
     /**
      * Helper method used to convert a URI into abstract pathname
-     * @param path abstract pathname
+     * @param token the referenced token whose path we need
      * @return image from the converted path
+     * @author Michelle Pham
      */
-    private static Image createImage(String path) {
+    static Image createImage(Token token) {
+        String path = token.getPath();
         File file = new File(path);
         Image imageFromPath = new Image(file.toURI().toString());
         return imageFromPath;
