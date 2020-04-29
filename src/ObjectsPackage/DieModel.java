@@ -7,20 +7,24 @@ public class DieModel {
     private static Random randNumRollerTwo = new Random();
     private static int numSides = 6;
     private static int addOne = 1;
+    int diceRollNum;
+    int diceRollNumTwo;
 
-    public static int roll() {
+    public void roll() {
         int rollNum = randNumRoller.nextInt(numSides);
-        return rollNum + addOne;
+        diceRollNum = rollNum + addOne;
     }
 
-    public static int rollTwo() {
+    public void rollTwo() {
         int rollNumTwo = randNumRollerTwo.nextInt(numSides);
-        return rollNumTwo + addOne;
+        diceRollNumTwo = rollNumTwo + addOne;
     }
 
-    public static void main(String[] args) {
-        DieModel dieOne = new DieModel();
-        System.out.println(dieOne.roll());
-        System.out.println(dieOne.rollTwo());
+    public int getDiceRollNum() {
+        return diceRollNum;
+    }
+
+    public int getDiceRollNumTwo() {
+        return diceRollNumTwo;
     }
 }

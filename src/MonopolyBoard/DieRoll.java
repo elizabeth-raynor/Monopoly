@@ -8,7 +8,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class DieView extends VBox {
+public class DieRoll extends VBox {
 
     VBox root = new VBox(10);
 
@@ -17,7 +17,7 @@ public class DieView extends VBox {
      * creates button to click to roll
      * creates two nodes for images of the die
      */
-    public DieView() {
+    public DieRoll() {
         //Create root
         root.setPadding(new Insets(15));
 
@@ -41,26 +41,11 @@ public class DieView extends VBox {
         DieModel dieRoll = new DieModel();
 
         //event Handle
-        eventHandleButton(btn, rollOnce, rollTwice, firstRollImageView, secondRollImageView, dieHold, dieRoll);
-
-    }
-
-    /**
-     * handles the situation when the button is clicked
-     * @param btn
-     * @param rollOnce
-     * @param rollTwice
-     * @param firstRollImageView
-     * @param secondRollImageView
-     * @param dieHold
-     * @param dieRoll
-     */
-    private void eventHandleButton(Button btn, DieImages rollOnce, DieImages rollTwice, ImageView firstRollImageView,
-                                   ImageView secondRollImageView, HBox dieHold, DieModel dieRoll) {
-        //event Handle
         btn.setOnAction(event -> {
-            int dieRolledNumOne = dieRoll.roll();
-            int dieRolledNumTwo = dieRoll.rollTwo();
+            dieRoll.roll();
+            dieRoll.rollTwo();
+            int dieRolledNumOne = dieRoll.getDiceRollNum();
+            int dieRolledNumTwo = dieRoll.getDiceRollNumTwo();
 
             Image firstDieView = rollOnce.setDiceNumToImage(dieRolledNumOne);
             //ImageView firstDieView = rollOnce.getDiePic();
