@@ -151,7 +151,7 @@ public class ConsoleGame {
         Token pToken = askToken();
         Player newPlayer = new Player(pName, pToken);
         players.add(newPlayer);
-//        System.out.println(newPlayer);    // uncomment to see what the player initalized information looks like
+//        System.out.println(newPlayer);    // uncomment to see what the player initialized information looks like
     }
 
 

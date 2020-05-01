@@ -56,8 +56,8 @@ public class PlayerView extends VBox {
 
         // initializing an example player's information
         Player examplePlayer = new Player("PlayerOne", Token.CANNON);
-        MonopolyProperty propOne = new MonopolyProperty("Mediterranean Ave.","purple",60,50, 2,10,30,90,160,250);
-        MonopolyProperty propTwo = new MonopolyProperty("New York Ave.", "orange", 200, 100, 16, 80, 220, 600, 800,1000);
+        MonopolyProperty propOne = new MonopolyProperty(1,"Mediterranean Avenue","Brown",60,50,2,10,30,90,160,250);
+        MonopolyProperty propTwo = new MonopolyProperty(19,"New York Avenue","Orange",200,100,16,80,220,600,800,1000);
         examplePlayer.addProperty(propOne);
         examplePlayer.addProperty(propTwo);
         String propertyNames = "";

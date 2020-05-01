@@ -314,14 +314,11 @@ public class BoardView {
      * Initialize the player info
      */
     private void initPlayerInfo() {
-        // Mark off where the player info goes // TODO remove this and add the player info
-        Label playerInfo = new Label("PLAYER INFO");
-        playerInfo.setTextAlignment(TextAlignment.CENTER);
-        playerInfo.setAlignment(Pos.CENTER);
-        playerInfo.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
-        playerInfo.setBorder(new Border(new BorderStroke(null, BorderStrokeStyle.SOLID, null, null)));
-        root.add(playerInfo, 11, 2, 1, 3);
-
+        PlayerView playerView = new PlayerView();
+        VBox playerViewRoot = playerView.getRoot();
+        playerViewRoot.setPrefSize(Double.MAX_VALUE, Double.MAX_VALUE);
+        playerViewRoot.setBorder(new Border(new BorderStroke(null, BorderStrokeStyle.SOLID, null, null)));
+        root.add(playerViewRoot, 11, 2, 1, 3);
     }
 
     /**
