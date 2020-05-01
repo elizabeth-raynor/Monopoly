@@ -83,6 +83,7 @@ public class BoardTiles extends VBox {
         formatCornerChanComm();
     }
 
+
     /**
      * Constructor for utilities and railroads with an image
      * @param sName the name of the property as a string
@@ -162,7 +163,7 @@ public class BoardTiles extends VBox {
      */
     private Label getCostLabel() {
         Label lCost = new Label(Integer.toString(iCost));
-        lCost.setFont(new Font(font, 11));
+        lCost.setFont(new Font(font, 10));
         return lCost;
     }
 
