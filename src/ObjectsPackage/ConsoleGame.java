@@ -24,7 +24,7 @@ import java.util.*;
  * Main class used to simulate the start of the game in console
  * @author Michelle Pham
  */
-public class GameSimulation {
+public class ConsoleGame {
 
     private static Scanner sc = new Scanner(System.in);
     private static ArrayList<Player> players = new ArrayList<>();
@@ -36,7 +36,10 @@ public class GameSimulation {
     /**
      * constructor
      */
-    public GameSimulation() {
+    public ConsoleGame(ArrayList<Player> players, List<String> names, List<Token> availableTokens) {
+        this.players = players;
+        this.names = names;
+        this.availableTokens = availableTokens;
     }
 
     /**
