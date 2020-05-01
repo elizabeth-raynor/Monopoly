@@ -162,7 +162,7 @@ public class BoardTiles extends VBox {
      */
     private Label getCostLabel() {
         Label lCost = new Label(Integer.toString(iCost));
-        lCost.setFont(new Font(font, 11));
+        lCost.setFont(new Font(font, 10));
         return lCost;
     }
 

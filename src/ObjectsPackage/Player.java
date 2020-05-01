@@ -40,6 +40,8 @@ public class Player {
     private int numRailRoadsOwned;
     /** Number of utilities owned */
     private int numUtilitiesOwned;
+    /** The Jail object for this player */
+    private Jail jail;
 
     /** Empty constructor
      */
@@ -55,7 +57,6 @@ public class Player {
         this.position = position;
         this.money = money;
         this.properties = properties;
-        this.numRailRoadsOwned = 0;
     }
 
     /**
@@ -63,8 +64,7 @@ public class Player {
      * @author Michelle Pham
      */
     private void movePosition() {
-        DieModel dieModel = new DieModel();
-        int numSpaces = dieModel.getDiceRollNum() + dieModel.getDiceRollNumTwo();
+        int numSpaces = DieModel.getDiceRollNum() + DieModel.getDiceRollNumTwo();
         this.position += numSpaces;
     }
 
