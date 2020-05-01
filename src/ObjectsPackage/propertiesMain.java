@@ -55,7 +55,12 @@ public class propertiesMain {
         MonopolyProperty parkPlace = new MonopolyProperty(37,"Park Place","Dark Blue",350,200,35,175,500,1100,1300,1500);
         MonopolyProperty boardwalk = new MonopolyProperty(39,"Boardwalk","Dark Blue",400,200,50,200,600,1400,1700,2000);
         // Railroads
-
+        Railroad readingRailroad = new Railroad(5,"Reading Railroad");
+        Railroad pennsylvaniaRailroad = new Railroad(15,"Pennsylvania Railroad");
+        Railroad boRailroad = new Railroad(25,"B. & O. Railroad");
+        Railroad shortLine = new Railroad(35,"Short Line");
         //Utilities
+        Utilities electricCompany = new Utilities(12,"Electric Company");
+        Utilities waterWorks = new Utilities(28,"Water Works");
     }
 }

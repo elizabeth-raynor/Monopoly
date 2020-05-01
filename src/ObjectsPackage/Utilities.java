@@ -40,15 +40,42 @@ public class Utilities {
     }
 
     /**
-     *
+     * Pays rent from the rentPayer to the owner, based on rules:
+     * 4x the roll if 1 utility is owned
+     * 10x the roll is 2 utilities are owned
      * @param rentPayer
      */
     public void payRent(Player rentPayer) {
+        int rolls = DieModel.getDiceRollNum() + DieModel.getDiceRollNumTwo();
 
+        if(this.whoOwns.getNumUtilitiesOwned() == 1) {
+            // Pay 4x the amount rolled
+            if(rentPayer.getMoney() < (4 * rolls)) {
+                System.out.println("Insufficient funds, can't pay rent");
+                return;
+            }
+            // Subtract from buyer and add to owner
+            rentPayer.setMoney(rentPayer.getMoney() - (4 * rolls));
+            this.whoOwns.setMoney(this.whoOwns.getMoney() + (4 * rolls));
+            return;
+        } else if(this.whoOwns.getNumUtilitiesOwned() == 2) {
+            // Pay 10x the amount rolled
+            if(rentPayer.getMoney() < (10 * rolls)) {
+                System.out.println("Insufficient funds, can't pay rent");
+                return;
+            }
+            // Subtract from buyer and add to owner
+            rentPayer.setMoney(rentPayer.getMoney() - (10 * rolls));
+            this.whoOwns.setMoney(this.whoOwns.getMoney() + (10 * rolls));
+            return;
+        } else {
+            System.out.println("I'm not sure how we got here");
+        }
     }
 
     /**
-     *
+     * Buys the utility. Subtracts the cost of the utility from the buyer, and then makes them the owner
+     * and adds one to the numUtility property for the new owner
      * @param buyer
      */
     public void buyUtility(Player buyer) {

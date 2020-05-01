@@ -31,8 +31,6 @@ public class Railroad {
     // Price of each railroad is $200
     private int costOfRailroad;
 
-    // Rent for railroad goes up based on how many are owned
-    private int baseRent;
 
     public Railroad(int position, String name) {
         this.position = position;
@@ -40,12 +38,14 @@ public class Railroad {
 
         this.whoOwns = null;
         this.costOfRailroad = 200;
-
-        this.baseRent = 25;
     }
 
     /**
      * Pay rent to the owner of the railroad, based on how many railroads they owned
+     * 25 for 1 railroad owned
+     * 50 for 2 railroads owned
+     * 100 for 3 railroads owned
+     * 200 for 4 railroads owned
      * @param rentPayer
      */
     public void payRent(Player rentPayer) {
