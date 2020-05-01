@@ -57,8 +57,8 @@ public class Jail {
      * A method to get the player out of jail
      */
     private void getOutOfJail() {
-        int roll1 = DieModel.roll();
-        int roll2 = DieModel.rollTwo();
+        int roll1 = DieModel.getDiceRollNum();
+        int roll2 = DieModel.getDiceRollNumTwo();
         if (numRolls == 3 && roll1 != roll2) {
             System.out.println("You've had 3 tries to rolls doubles. Now you must pay $50 to leave jail");
             player.setMoney(player.getMoney() - 50);
