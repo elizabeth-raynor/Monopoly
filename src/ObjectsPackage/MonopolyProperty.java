@@ -19,6 +19,9 @@ package ObjectsPackage;/* *****************************************
 
 
 public class MonopolyProperty {
+    // Position of the property on the board
+    private int propertyPosition;
+
     // Name of the property (may not be needed?)
     private String propertyName;
 
@@ -51,8 +54,9 @@ public class MonopolyProperty {
     private int fourHouseRent;
     private int hotelRent;
 
-    public MonopolyProperty(String propertyName, String propertyColor, int costOfProperty, int housePrice, int baseRent, int oneHouseRent, int twoHouseRent, int threeHouseRent, int fourHouseRent, int hotelRent) {
+    public MonopolyProperty(int position, String propertyName, String propertyColor, int costOfProperty, int housePrice, int baseRent, int oneHouseRent, int twoHouseRent, int threeHouseRent, int fourHouseRent, int hotelRent) {
         // Should be constant
+        this.propertyPosition = position;
         this.propertyName = propertyName;
         this.propertyColor = propertyColor;
         this.costOfProperty = costOfProperty;
@@ -135,6 +139,8 @@ public class MonopolyProperty {
         }
         // Remove the rent price from the rentPayer's money
         rentPayer.setMoney(rentPayer.getMoney() - this.currentRent);
+        // Add the rent price to the owner of the property
+        this.whoOwns.setMoney(this.whoOwns.getMoney() + this.currentRent);
     }
 
     /**

@@ -36,6 +36,10 @@ public class Player {
     private int position = 0;
     /** Array of properties that they own */
     private ArrayList<MonopolyProperty> properties = new ArrayList<MonopolyProperty>();
+    /** Number of railroads owned */
+    private int numRailRoadsOwned;
+    /** Number of utilities owned */
+    private int numUtilitiesOwned;
 
     /** Empty constructor
      */
@@ -51,6 +55,7 @@ public class Player {
         this.position = position;
         this.money = money;
         this.properties = properties;
+        this.numRailRoadsOwned = 0;
     }
 
     /**
@@ -93,4 +98,12 @@ public class Player {
     public ArrayList<MonopolyProperty> getProperties() {
         return properties;
     }
+
+    public int getNumRailRoadsOwned() { return numRailRoadsOwned; }
+
+    public void setNumRailRoadsOwned(int numRailRoadsOwned) { this.numRailRoadsOwned = numRailRoadsOwned; }
+
+    public int getNumUtilitiesOwned() { return numUtilitiesOwned; }
+
+    public void setNumUtilitiesOwned(int numUtilitiesOwned) { this.numUtilitiesOwned = numUtilitiesOwned; }
 }
