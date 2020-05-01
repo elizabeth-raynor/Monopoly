@@ -26,9 +26,9 @@ import java.util.ArrayList;
  */
 public class Player {
 
-    /** ObjectsPackage.Player's game token */
-    private String token;
-    /** ObjectsPackage.Player name */
+    /** player's game token */
+    private Token token;
+    /** player's name */
     private String name;
     /** Initial amount Amount of money player has */
     private int money = 1500;
@@ -49,7 +49,7 @@ public class Player {
     /**
      * Constructor to instantiate new player
      */
-    public Player(String name, String token) {
+    public Player(String name, Token token) {
         this.name = name;
         this.token = token;
         this.position = position;
@@ -60,6 +60,7 @@ public class Player {
 
     /**
      * Helper method used to update a player's position on the board by rolling the die
+     * @author Michelle Pham
      */
     private void movePosition() {
         DieModel dieModel = new DieModel();
@@ -79,11 +80,19 @@ public class Player {
         return position;
     }
 
-    public String getToken() {
+    public Token getToken() {
         return token;
     }
 
-    public void setToken(String token) {
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setToken(Token token) {
         this.token = token;
     }
 
@@ -106,4 +115,10 @@ public class Player {
     public int getNumUtilitiesOwned() { return numUtilitiesOwned; }
 
     public void setNumUtilitiesOwned(int numUtilitiesOwned) { this.numUtilitiesOwned = numUtilitiesOwned; }
+
+    @Override
+    public String toString() {
+        return "Player information: {" + "name = " + name + ", token = " + token +
+                ", money available $=" + money + ", Position (#) = " + position + ", properties = " + properties + '}';
+    }
 }

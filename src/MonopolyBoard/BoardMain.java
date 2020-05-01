@@ -9,7 +9,9 @@ public class BoardMain extends Application {
     /** the view */
     private BoardView theView;
 
-    public static void main(String[] args) { launch(args); }
+    public static void main(String[] args) {
+        launch(args);
+    }
 
 
     @Override

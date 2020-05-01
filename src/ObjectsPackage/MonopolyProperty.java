@@ -1,4 +1,5 @@
-package ObjectsPackage;/* *****************************************
+package ObjectsPackage;
+/* *****************************************
  * CSCI205 - Software Engineering and Design
  * Spring 2020
  * Instructor: Prof. Chris Dancy
@@ -263,4 +264,6 @@ public class MonopolyProperty {
     public Boolean getHasHotel() { return hasHotel; }
 
     public void setHasHotel(Boolean hasHotel) { this.hasHotel = hasHotel; }
+
+    public String getPropertyName() { return propertyName; }
 }
