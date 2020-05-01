@@ -7,8 +7,8 @@ public class DieModel {
     private static Random randNumRollerTwo = new Random();
     private static int numSides = 6;
     private static int addOne = 1;
-    int diceRollNum;
-    int diceRollNumTwo;
+    private static int diceRollNum;
+    private static int diceRollNumTwo;
 
     public void roll() {
         int rollNum = randNumRoller.nextInt(numSides);
@@ -20,11 +20,11 @@ public class DieModel {
         diceRollNumTwo = rollNumTwo + addOne;
     }
 
-    public int getDiceRollNum() {
+    public static int getDiceRollNum() {
         return diceRollNum;
     }
 
-    public int getDiceRollNumTwo() {
+    public static int getDiceRollNumTwo() {
         return diceRollNumTwo;
     }
 }
