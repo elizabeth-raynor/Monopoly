@@ -48,25 +48,25 @@ public class Utilities {
     public void payRent(Player rentPayer) {
         int rolls = DieModel.getDiceRollNum() + DieModel.getDiceRollNumTwo();
 
-        if(this.whoOwns.getNumUtilitiesOwned() == 1) {
+        if(this.whoOwns.getUtils().size() == 1) {
             // Pay 4x the amount rolled
             if(rentPayer.getMoney() < (4 * rolls)) {
                 System.out.println("Insufficient funds, can't pay rent");
                 return;
             }
             // Subtract from buyer and add to owner
-            rentPayer.setMoney(rentPayer.getMoney() - (4 * rolls));
-            this.whoOwns.setMoney(this.whoOwns.getMoney() + (4 * rolls));
+            rentPayer.removeMoney(4 * rolls);
+            this.whoOwns.addMoney(4 * rolls);
             return;
-        } else if(this.whoOwns.getNumUtilitiesOwned() == 2) {
+        } else if(this.whoOwns.getUtils().size() == 2) {
             // Pay 10x the amount rolled
             if(rentPayer.getMoney() < (10 * rolls)) {
                 System.out.println("Insufficient funds, can't pay rent");
                 return;
             }
             // Subtract from buyer and add to owner
-            rentPayer.setMoney(rentPayer.getMoney() - (10 * rolls));
-            this.whoOwns.setMoney(this.whoOwns.getMoney() + (10 * rolls));
+            rentPayer.removeMoney(10 * rolls);
+            this.whoOwns.addMoney(10 * rolls);
             return;
         } else {
             System.out.println("I'm not sure how we got here");
@@ -89,9 +89,9 @@ public class Utilities {
         // Set the new owner
         this.whoOwns = buyer;
         // Subtract money
-        this.whoOwns.setMoney(this.whoOwns.getMoney() - this.costOfUtility);
+        this.whoOwns.removeMoney(this.costOfUtility);
         // Add one to the numUtilitiesOwned for that person
-        this.whoOwns.setNumRailRoadsOwned(this.whoOwns.getNumUtilitiesOwned() + 1);
+//        this.whoOwns.setNumRailRoadsOwned(this.whoOwns.getNumUtilitiesOwned() + 1);
     }
 
     /**
@@ -104,9 +104,9 @@ public class Utilities {
             return;
         }
         // Subtract 1 from number of utilities owned
-        this.whoOwns.setNumUtilitiesOwned(this.whoOwns.getNumUtilitiesOwned() - 1);
+//        this.whoOwns.setNumUtilitiesOwned(this.whoOwns.getNumUtilitiesOwned() - 1);
         // Add half the amount that was paid for the utility
-        this.whoOwns.setMoney(this.whoOwns.getMoney() + (this.costOfUtility / 2));
+        this.whoOwns.addMoney(this.costOfUtility / 2);
         // Remove the owner
         this.whoOwns = null;
     }

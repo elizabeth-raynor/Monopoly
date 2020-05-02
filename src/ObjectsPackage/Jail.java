@@ -31,10 +31,13 @@ public class Jail {
     private int numRolls = 0;
 
     /**
-     * The constructor that instantiates this Jail object with a player
+     * The constructor that instantiates this Jail object with a player who
+     * is neither in jail nor visiting
      */
-    public Jail() {
-
+    public Jail(Player player) {
+        this.player = player;
+        this.justVisiting = false;
+        this.inJail = false;
     }
 
     /** Sets the players inJail status to true */
@@ -45,6 +48,7 @@ public class Jail {
     /** Sets the players inJail status to false */
     public void leaveJail() {
         this.inJail = false;
+        this.justVisiting = false;
     }
 
     /** Sets the players justVisiting status to true */
@@ -52,13 +56,14 @@ public class Jail {
         this.justVisiting = true;
     }
 
+
     /**
      * A method to get the player out of jail
      */
     public void getOutOfJail(int rollOne, int rollTwo) {
         if (numRolls == 2 && rollOne != rollTwo) {
             System.out.println("You've had 3 tries to rolls doubles. Now you must pay $50 to leave jail");
-            player.setMoney(player.getMoney() - 50);
+            player.removeMoney(50);
             leaveJail();
         }
         else if (rollOne == rollTwo) {

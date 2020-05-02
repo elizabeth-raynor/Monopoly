@@ -50,7 +50,7 @@ public class Railroad {
      */
     public void payRent(Player rentPayer) {
         // Change how much is charger based on the number of railroads owned
-        switch (this.whoOwns.getNumRailRoadsOwned()) {
+        switch (this.whoOwns.getRR().size()) {
             case 1:
                 // Rent is $25
                 if(rentPayer.getMoney() < 25) {
@@ -58,8 +58,8 @@ public class Railroad {
                     return;
                     // TODO - add action for selling off properties or go bankrupt
                 }
-                rentPayer.setMoney(rentPayer.getMoney() - 25);
-                this.whoOwns.setMoney(this.whoOwns.getMoney() + 25);
+                rentPayer.removeMoney(25);
+                this.whoOwns.addMoney(25);
                 break;
             case 2:
                 // Rent is $50
@@ -68,8 +68,8 @@ public class Railroad {
                     return;
                     // TODO - add action for selling off properties or go bankrupt
                 }
-                rentPayer.setMoney(rentPayer.getMoney() - 50);
-                this.whoOwns.setMoney(this.whoOwns.getMoney() + 50);
+                rentPayer.removeMoney(50);
+                this.whoOwns.addMoney(50);
                 break;
             case 3:
                 // Rent is $100
@@ -78,8 +78,8 @@ public class Railroad {
                     return;
                     // TODO - add action for selling off properties or go bankrupt
                 }
-                rentPayer.setMoney(rentPayer.getMoney() - 100);
-                this.whoOwns.setMoney(this.whoOwns.getMoney() + 100);
+                rentPayer.removeMoney(100);
+                this.whoOwns.addMoney(100);
                 break;
             case 4:
                 // Rent is $200
@@ -88,8 +88,8 @@ public class Railroad {
                     return;
                     // TODO - add action for selling off properties or go bankrupt
                 }
-                rentPayer.setMoney(rentPayer.getMoney() - 200);
-                this.whoOwns.setMoney(this.whoOwns.getMoney() + 200);
+                rentPayer.removeMoney(200);
+                this.whoOwns.addMoney(200);
                 break;
         }
     }
@@ -109,9 +109,9 @@ public class Railroad {
         // Set the new owner
         this.whoOwns = buyer;
         // Subtract money
-        this.whoOwns.setMoney(this.whoOwns.getMoney() - this.costOfRailroad);
+        this.whoOwns.removeMoney(this.costOfRailroad);
         // Add one to the numRailroadsOwned for that person
-        this.whoOwns.setNumRailRoadsOwned(this.whoOwns.getNumRailRoadsOwned() + 1);
+//        this.whoOwns.setNumRailRoadsOwned(this.whoOwns.getNumRailRoadsOwned() + 1);
     }
 
     /**
@@ -124,9 +124,9 @@ public class Railroad {
             return;
         }
         // Subtract 1 from number of railroads owned
-        this.whoOwns.setNumRailRoadsOwned(this.whoOwns.getNumRailRoadsOwned() - 1);
+//        this.whoOwns.setNumRailRoadsOwned(this.whoOwns.getNumRailRoadsOwned() - 1);
         // Add half the amount that was paid for the railroad
-        this.whoOwns.setMoney(this.whoOwns.getMoney() + (this.costOfRailroad / 2));
+        this.whoOwns.addMoney(this.costOfRailroad / 2);
         // Remove the owner
         this.whoOwns = null;
     }

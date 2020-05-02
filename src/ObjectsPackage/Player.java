@@ -36,12 +36,10 @@ public class Player {
     private int position = 0;
     /** Array of properties that they own */
     private ArrayList<MonopolyProperty> properties = new ArrayList<MonopolyProperty>();
-    /** Number of railroads owned */
-    private int numRailRoadsOwned;
-    /** Number of utilities owned */
-    private int numUtilitiesOwned;
+    private ArrayList<Railroad> rr = new ArrayList<>();
+    private ArrayList<Utilities> utils = new ArrayList<>();
     /** The Jail object for this player */
-    private Jail jail;
+    public Jail jail;
 
     /** Empty constructor
      */
@@ -57,6 +55,7 @@ public class Player {
         this.position = position;
         this.money = money;
         this.properties = properties;
+        this.jail = new Jail(this);
     }
 
     /**
@@ -71,6 +70,14 @@ public class Player {
     public void addProperty(MonopolyProperty propertyToAdd) { this.properties.add(propertyToAdd); }
 
     public void removeProperty(MonopolyProperty propertyToRemove) { this.properties.remove(propertyToRemove); }
+
+    public void addRR(Railroad rrToAdd) {this.rr.add(rrToAdd);}
+
+    public void removeRR(Railroad rrToRemove) {this.rr.remove(rrToRemove);}
+
+    public void addUtil(Utilities utilToAdd) {this.utils.add(utilToAdd);}
+
+    public void removeUtil(Utilities utilToRemove) {this.utils.remove(utilToRemove);}
 
     public void setPosition(int position) {
         this.position = position;
@@ -100,21 +107,29 @@ public class Player {
         return money;
     }
 
-    public void setMoney(int money) {
-        this.money = money;
+    /**
+     * Add money to the player
+     * @param money
+     */
+    public void addMoney(int money) {
+        this.money += money;
+    }
+
+    /**
+     * Remove movey from the player
+     * @param money
+     */
+    public void removeMoney(int money) {
+        this.money -= money;
     }
 
     public ArrayList<MonopolyProperty> getProperties() {
         return properties;
     }
 
-    public int getNumRailRoadsOwned() { return numRailRoadsOwned; }
+    public ArrayList<Railroad> getRR() {return rr;}
 
-    public void setNumRailRoadsOwned(int numRailRoadsOwned) { this.numRailRoadsOwned = numRailRoadsOwned; }
-
-    public int getNumUtilitiesOwned() { return numUtilitiesOwned; }
-
-    public void setNumUtilitiesOwned(int numUtilitiesOwned) { this.numUtilitiesOwned = numUtilitiesOwned; }
+    public ArrayList<Utilities> getUtils() {return utils;}
 
     @Override
     public String toString() {

@@ -100,7 +100,7 @@ public class MonopolyProperty {
             return;
         }
         // Subtract the amount the property costs
-        buyer.setMoney(buyer.getMoney() - this.costOfProperty);
+        buyer.removeMoney(this.costOfProperty);
         // Change the owner to buyer
         this.whoOwns = buyer;
         // Add the property to the list of owned property for the buyer
@@ -120,7 +120,7 @@ public class MonopolyProperty {
             return;
         }
         // Add the price of the property to the seller
-        seller.setMoney(seller.getMoney() + this.costOfProperty);
+        seller.addMoney(this.costOfProperty);
         // Change the owner to null
         this.whoOwns = null;
         // Remove the property from the sellers list of owned properties
@@ -139,9 +139,9 @@ public class MonopolyProperty {
             // TODO - add action for selling off properties or go bankrupt
         }
         // Remove the rent price from the rentPayer's money
-        rentPayer.setMoney(rentPayer.getMoney() - this.currentRent);
+        rentPayer.removeMoney(this.currentRent);
         // Add the rent price to the owner of the property
-        this.whoOwns.setMoney(this.whoOwns.getMoney() + this.currentRent);
+        this.whoOwns.addMoney(this.currentRent);
     }
 
     /**
@@ -159,7 +159,7 @@ public class MonopolyProperty {
             return;
         }
         // Subtract the price of a house from the owner's money
-        this.whoOwns.setMoney(this.whoOwns.getMoney() - this.housePrice);
+        this.whoOwns.removeMoney(this.housePrice);
         // Add one to the number of houses owned
         this.numOfHouses += 1;
         // Update currentRent
@@ -191,7 +191,7 @@ public class MonopolyProperty {
             return;
         }
         // Add half the price of a house to the owner's money
-        this.whoOwns.setMoney(this.whoOwns.getMoney() + (this.housePrice / 2));
+        this.whoOwns.addMoney(this.housePrice / 2);
         // Subtract one from the number of houses on the property
         this.numOfHouses += -1;
         // Update currentRent
@@ -230,7 +230,7 @@ public class MonopolyProperty {
             return;
         }
         // Subtract the cost of a hotel (the same as a house) from the owners money
-        this.whoOwns.setMoney(this.whoOwns.getMoney() - this.housePrice);
+        this.whoOwns.removeMoney(this.housePrice);
         // Update hasHotel to true
         this.hasHotel = true;
         // Update the currentRent
@@ -246,7 +246,7 @@ public class MonopolyProperty {
             return;
         }
         // Add half the price of a hotel (house) to the owners money
-        this.whoOwns.setMoney(this.whoOwns.getMoney() + (this.housePrice / 2));
+        this.whoOwns.addMoney(this.housePrice / 2);
         // Set hasHotel to false
         this.hasHotel = false;
         // Update currentRent
