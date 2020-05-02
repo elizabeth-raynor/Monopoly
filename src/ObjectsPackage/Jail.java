@@ -4,7 +4,7 @@
  * Instructor: Prof. Chris Dancy
  *
  * Name: Elizabeth Raynor
- * Section: YOUR SECTION
+ * Section: 11 am
  * Date: 4/29/2020
  * Time: 9:38 AM
  *
@@ -18,6 +18,11 @@
  */
 package ObjectsPackage;
 
+/**
+ * Represents the jail tile on the board. Each player has their own Jail instance
+ *
+ * @author Elizabeth Raynor
+ */
 public class Jail {
 
     /** The player associated with this Jail */

@@ -29,8 +29,12 @@ import javafx.scene.text.TextAlignment;
 import java.io.File;
 
 
+/**
+ * Creates the scene for the board
+ *
+ * @author Elizabeth Raynor
+ */
 public class BoardView {
-
 
     /** The root of the scene */
     private final GridPane root;
@@ -300,6 +304,8 @@ public class BoardView {
 
     /**
      * Initializes the die
+     *
+     * @author Amisha Chhetri
      */
     private void initDie() {
         DieRoll dieRoll = new DieRoll();
@@ -312,6 +318,8 @@ public class BoardView {
 
     /**
      * Initialize the player info
+     *
+     * @author Michelle Pham
      */
     private void initPlayerInfo() {
         PlayerView playerView = new PlayerView();

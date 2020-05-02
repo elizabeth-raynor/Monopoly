@@ -3,16 +3,16 @@
  * Spring 2020
  * Instructor: Prof. Chris Dancy
  *
- * Name: YOUR NAME
- * Section: YOUR SECTION
+ * Name: Elizabeth Raynor
+ * Section: 11 am
  * Date: 4/14/2020
  * Time: 7:53 PM
  *
  * Project: csci205finalprojectsp2020
- * Package: MonopolyBoard
+ * Package: BoardTiles
  * Class: ObjectsPackage.Property
  *
- * Description:
+ * Description: Visually represents all the tile on the board using JavaFX
  *
  * ****************************************
  */
@@ -29,7 +29,11 @@ import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 import java.io.File;
 
-
+/**
+ * Visually represent all the tiles on the board using JavaFX
+ *
+ * @author Elizabeth Raynor
+ */
 public class BoardTiles extends VBox {
 
     /** The name of the property */

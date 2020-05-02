@@ -71,12 +71,38 @@ public class Player {
 
     public void removeProperty(MonopolyProperty propertyToRemove) { this.properties.remove(propertyToRemove); }
 
+    /**
+     * Add railroads to the player's list of rr
+     *
+     * @param rrToAdd - the rr to add to the list
+     * @author Elizabeth Raynor
+     */
     public void addRR(Railroad rrToAdd) {this.rr.add(rrToAdd);}
 
+    /**
+     * Remove railroads to the player's list of rr
+     *
+     * @param rrToRemove - the rr to add to the list
+     * @author Elizabeth Raynor
+     */
     public void removeRR(Railroad rrToRemove) {this.rr.remove(rrToRemove);}
 
+
+    /**
+     * Add utilities to the player's list of rr
+     *
+     * @param utilToAdd - the rr to add to the list
+     * @author Elizabeth Raynor
+     */
     public void addUtil(Utilities utilToAdd) {this.utils.add(utilToAdd);}
 
+
+    /**
+     * Remove utilities to the player's list of rr
+     *
+     * @param utilToRemove - the rr to add to the list
+     * @author Elizabeth Raynor
+     */
     public void removeUtil(Utilities utilToRemove) {this.utils.remove(utilToRemove);}
 
     public void setPosition(int position) {
@@ -109,15 +135,19 @@ public class Player {
 
     /**
      * Add money to the player
-     * @param money
+     *
+     * @param money - the amount to add
+     * @author Elizabeth RAynor
      */
     public void addMoney(int money) {
         this.money += money;
     }
 
     /**
-     * Remove movey from the player
-     * @param money
+     * Remove money from the player
+     *
+     * @param money - the amount to remove
+     * @author Elizabeth Raynor
      */
     public void removeMoney(int money) {
         this.money -= money;
