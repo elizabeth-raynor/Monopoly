@@ -36,8 +36,8 @@ public class Player {
     private int position = 0;
     /** Array of properties that they own */
     private ArrayList<MonopolyProperty> properties = new ArrayList<MonopolyProperty>();
-    private ArrayList<Railroad> rr = new ArrayList<>();
-    private ArrayList<Utilities> utils = new ArrayList<>();
+    private ArrayList<Railroad> rr = new ArrayList<Railroad>();
+    private ArrayList<Utilities> utils = new ArrayList<Utilities>();
     /** The Jail object for this player */
     public Jail jail;
 
