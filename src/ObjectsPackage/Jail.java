@@ -24,47 +24,44 @@ public class Jail {
     private Player player;
 
     /** The status of the player in relation to Jail */
-    private boolean justVisiting;
-    private boolean inJail;
+    public boolean justVisiting;
+    public boolean inJail;
 
     /** The number of rolls attempted to escape Jail */
     private int numRolls = 0;
 
     /**
      * The constructor that instantiates this Jail object with a player
-     * @param player - the player associated with this jail
      */
-    public Jail(Player player) {
-        this.player = player;
+    public Jail() {
+
     }
 
     /** Sets the players inJail status to true */
-    private void goToJail() {
+    public void goToJail() {
         this.inJail = true;
     }
 
     /** Sets the players inJail status to false */
-    private void leaveJail() {
+    public void leaveJail() {
         this.inJail = false;
     }
 
     /** Sets the players justVisiting status to true */
-    private void landOnJail() {
+    public void landOnJail() {
         this.justVisiting = true;
     }
 
     /**
      * A method to get the player out of jail
      */
-    private void getOutOfJail() {
-        int roll1 = DieModel.getDiceRollNum();
-        int roll2 = DieModel.getDiceRollNumTwo();
-        if (numRolls == 3 && roll1 != roll2) {
+    public void getOutOfJail(int rollOne, int rollTwo) {
+        if (numRolls == 2 && rollOne != rollTwo) {
             System.out.println("You've had 3 tries to rolls doubles. Now you must pay $50 to leave jail");
             player.setMoney(player.getMoney() - 50);
             leaveJail();
         }
-        else if (roll1 == roll2) {
+        else if (rollOne == rollTwo) {
             System.out.println("Congratulations you rolled doubles!");
             leaveJail();
         }
@@ -72,5 +69,9 @@ public class Jail {
             numRolls++;
             System.out.println("Sorry, you didn't roll doubles. Better luck next time!");
         }
+    }
+
+    public int getNumRolls() {
+        return numRolls;
     }
 }
