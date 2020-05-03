@@ -57,7 +57,8 @@ public class ConsoleGame {
             initPlayerInfo();
         }
 
-        System.out.println(players);
+        printPlayers();
+        pickOrder();
 
     }
 
@@ -152,6 +153,47 @@ public class ConsoleGame {
         Player newPlayer = new Player(pName, pToken);
         players.add(newPlayer);
 //        System.out.println(newPlayer);    // uncomment to see what the player initialized information looks like
+    }
+
+    static private void printPlayers() {
+        System.out.println("\n*** These are the players of the game ***");
+        for (Player p : players) {
+            System.out.println(p);
+        }
+    }
+
+    /**
+     * Picks a random person to start the game and displays the order or players
+     */
+    static private void pickOrder() {
+        Random random = new Random();
+        int startingPlayer = random.nextInt(players.size());
+        ArrayList<Player> copy = (ArrayList<Player>) players.clone();
+
+        if (startingPlayer != 0) {
+            int indexPlayer = 0;
+            int indexCopy = startingPlayer;
+            while (indexCopy < copy.size()) {
+                players.set(indexPlayer, copy.get(indexCopy));
+                indexPlayer++;
+                indexCopy++;
+            }
+
+            indexCopy = 0;
+            while (indexCopy < startingPlayer) {
+                players.set(indexPlayer, copy.get(indexCopy));
+                indexCopy++;
+                indexPlayer++;
+
+            }
+        }
+
+        System.out.println("\n*** The order of players ***");
+        for (Player p : players) {
+            System.out.println(p.getName());
+        }
+
+
     }
 
 
