@@ -1,3 +1,22 @@
+/* *****************************************
+ * CSCI205 - Software Engineering and Design
+ * Spring 2020
+ * Instructor: Prof. Chris Dancy
+ *
+ * Name: Amisha Chhetri
+ * Section: 11 am
+ * Date: 4/29/2020
+ * Time: 9:38 AM
+ *
+ * Project: csci205finalprojectsp2020
+ * Package: ObjectsPackage
+ * Class: DieModel
+ *
+ * Description: makes a die that rolls a random number from 1-6
+ *
+ * ****************************************
+ */
+
 package ObjectsPackage;
 
 import java.util.Random;

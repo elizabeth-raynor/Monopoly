@@ -1,3 +1,21 @@
+/* *****************************************
+ * CSCI205 - Software Engineering and Design
+ * Spring 2020
+ * Instructor: Prof. Chris Dancy
+ *
+ * Name: Amisha Chhetri
+ * Section: 11 am
+ * Date: 4/29/2020
+ * Time: 9:38 AM
+ *
+ * Project: csci205finalprojectsp2020
+ * Package: ObjectsPackage
+ * Class: DieImages
+ *
+ * Description: loads the images that are used in the board
+ *
+ * ****************************************
+ */
 package MonopolyBoard;
 
 import javafx.scene.image.Image;
