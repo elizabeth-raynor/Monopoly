@@ -164,6 +164,6 @@ public class Player {
     @Override
     public String toString() {
         return "Player information: {" + "name = " + name + ", token = " + token +
-                ", money available $=" + money + ", Position (#) = " + position + ", properties = " + properties + '}';
+                ", money available = $" + money + ", Position (#) = " + position + ", properties = " + properties + '}';
     }
 }
