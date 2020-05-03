@@ -45,13 +45,16 @@ public class ConsoleGame {
      * @param args
      */
     public static void main(String[] args) {
-        InitializePlayers initializePlayers = new InitializePlayers((ArrayList) playerList);
+        InitializePlayers initializePlayers = new InitializePlayers((ArrayList) players);
         players = initializePlayers.runInitializePlayers();
 
         printPlayers();
         pickOrder();
     }
 
+    /**
+     * Prints each player's information on their own line in the console
+     */
     static private void printPlayers() {
         System.out.println("\n*** These are the players of the game ***");
         for (Player p : players) {
