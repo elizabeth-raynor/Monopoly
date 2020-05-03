@@ -2,7 +2,9 @@ package ObjectsPackage;
 
 import java.util.Random;
 
-
+/**
+ * @author amishachhetri
+ */
 public class DieModel {
     private static Random randNumRoller = new Random();
     private static Random randNumRollerTwo = new Random();

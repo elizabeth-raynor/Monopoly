@@ -8,6 +8,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+/**
+ * @author amishachhetri
+ */
 public class DieRoll extends VBox {
 
     VBox root = new VBox(10);
