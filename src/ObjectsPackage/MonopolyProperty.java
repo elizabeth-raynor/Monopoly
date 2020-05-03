@@ -41,8 +41,16 @@ public class MonopolyProperty {
     // Does or does not have a hotel, can only have one
     private Boolean hasHotel;
 
+    public int getCostOfProperty() {
+        return costOfProperty;
+    }
+
     // The price of the property
     private int costOfProperty;
+
+    public int getCurrentRent() {
+        return currentRent;
+    }
 
     // The current price of rent
     private int currentRent;
@@ -121,10 +129,10 @@ public class MonopolyProperty {
         }
         // Add the price of the property to the seller
         seller.addMoney(this.costOfProperty);
-        // Change the owner to null
-        this.whoOwns = null;
         // Remove the property from the sellers list of owned properties
         this.whoOwns.removeProperty(this);
+        // Change the owner to null
+        this.whoOwns = null;
     }
 
     /**
@@ -222,7 +230,7 @@ public class MonopolyProperty {
         if(this.whoOwns.getMoney() < this.housePrice){
             System.out.println("Insufficient funds to buy a hotel");
             return;
-        } else if(this.numOfHouses <= 4) {
+        } else if(this.numOfHouses < 4) {
             System.out.println("You must have 4 houses in order to buy a hotel");
             return;
         } else if(this.hasHotel) {
