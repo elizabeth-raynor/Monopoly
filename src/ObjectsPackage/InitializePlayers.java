@@ -30,10 +30,6 @@ import java.util.Scanner;
 public class InitializePlayers {
 
     /**
-     * console used for all user input
-     */
-    private Scanner sc = new Scanner(System.in);
-    /**
      * instantiated list of all players - gets initialized later
      */
     private ArrayList<Player> players = new ArrayList<>();
@@ -84,7 +80,8 @@ public class InitializePlayers {
      * Only accepts single digit of 2, 3, or 4
      * @author Michelle Pham
      */
-    private int askNumPlayers() {
+    protected int askNumPlayers() {
+        Scanner sc = new Scanner(System.in);
         String num;
         String nPlayers;
         while (true) {
@@ -107,7 +104,8 @@ public class InitializePlayers {
      * @return desired player name
      * @author Michelle Pham
      */
-     private String askPlayerName() {
+    protected String askPlayerName() {
+        Scanner sc = new Scanner(System.in);
         String playerName = "";
         while (true) {
             System.out.println("What would you like your player name to be?");
@@ -139,8 +137,8 @@ public class InitializePlayers {
      * Checks that it hasn't already been claimed
      * @author Michelle Pham
      * @return Token of user's choice */
-     private Token askToken() {
-
+    protected Token askToken() {
+        Scanner sc = new Scanner(System.in);
         Token chosenToken = null;
         while (true) {
             System.out.println("Which token would you like to use?");
@@ -175,7 +173,19 @@ public class InitializePlayers {
 //        System.out.println(newPlayer);    // uncomment to see what the player initialized information looks like
     }
 
-    public int getNumP() {
-        return numP;
+    public void setAvailableTokens(List<Token> availableTokens) {
+        this.availableTokens = availableTokens;
+    }
+
+    public void setNames(List<String> names) {
+        this.names = names;
+    }
+
+    public List<String> getNames() {
+        return names;
+    }
+
+    public List<Token> getAvailableTokens() {
+        return availableTokens;
     }
 }
