@@ -4,6 +4,9 @@ import javafx.scene.image.Image;
 
 import java.io.File;
 
+/**
+ * @author amishachhetri
+ */
 public class DieImages {
 
     private Image diePic;
