@@ -19,6 +19,9 @@ package ObjectsPackage;
  */
 
 
+/**
+ * @Author Zeke Farkas
+ */
 public class MonopolyProperty {
     // Position of the property on the board
     private int propertyPosition;

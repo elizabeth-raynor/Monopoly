@@ -18,6 +18,9 @@
  */
 package ObjectsPackage;
 
+/**
+ * @Author Zeke Farkas
+ */
 public class Utilities {
     // The position of the utility
     private int position;

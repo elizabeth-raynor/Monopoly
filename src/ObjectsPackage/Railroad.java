@@ -18,6 +18,9 @@
  */
 package ObjectsPackage;
 
+/**
+ * @Author Zeke Farkas
+ */
 public class Railroad {
     // Position of railroad on board
     private int position;

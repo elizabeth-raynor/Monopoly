@@ -4,7 +4,7 @@
  * Instructor: Prof. Chris Dancy
  *
  * Name: Elizabeth Raynor
- * Section: 11 am
+ * Section: YOUR SECTION
  * Date: 4/29/2020
  * Time: 9:38 AM
  *

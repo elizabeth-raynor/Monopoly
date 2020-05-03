@@ -20,6 +20,7 @@ package ObjectsPackage;
 
 /**
  * This is just a temp class where I am setting all of the initiallized properties
+ * @Author Zeke Farkas
  */
 
 public class propertiesMain {
