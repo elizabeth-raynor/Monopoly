@@ -20,7 +20,6 @@
 package MonopolyBoard;
 
 import ObjectsPackage.Token;
-import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -28,7 +27,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -41,7 +39,7 @@ import javafx.stage.Stage;
  * Creates a pop up window that would simulate a player choosing their token
  * @author Michelle Pham
  */
-public class TokenMain extends Application {
+public class TokenStage {
 
     /** initialize root */
     private VBox root = new VBox(10);
@@ -73,19 +71,9 @@ public class TokenMain extends Application {
      * Initialized once button is clicked and name is typed into textfield */
     private String playerName;
 
+    TokenStage() {
+        Stage primaryStage = new Stage();
 
-    /**
-     * Launches the pop up window
-     * @param args
-     */
-    public static void main(String[] args) {
-        launch(args);
-    }
-
-    @Override
-    /** Setting the scene
-     * @author Michelle Pham*/
-    public void start(Stage primaryStage) {
         initPlayerInput();
         initTokenDropDown();
         initImageView();
