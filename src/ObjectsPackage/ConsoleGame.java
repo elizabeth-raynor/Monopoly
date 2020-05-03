@@ -42,9 +42,9 @@ public class ConsoleGame {
 
     /**
      * Main method used to run the game
-     * @param args
+//     * @param args
      */
-    public static void main(String[] args) {
+    public void runConsoleGame() {
         InitializePlayers initializePlayers = new InitializePlayers((ArrayList) players);
         players = initializePlayers.runInitializePlayers();
 

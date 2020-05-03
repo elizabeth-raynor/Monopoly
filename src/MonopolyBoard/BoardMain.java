@@ -19,9 +19,12 @@
 
 package MonopolyBoard;
 
+import ObjectsPackage.ConsoleGame;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
+import java.io.Console;
 
 /**
  * Run the monopoly board

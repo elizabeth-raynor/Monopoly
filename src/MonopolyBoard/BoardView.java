@@ -18,13 +18,13 @@
  */
 package MonopolyBoard;
 
+import ObjectsPackage.ConsoleGame;
 import javafx.geometry.Pos;
-import javafx.scene.control.Label;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.text.TextAlignment;
 
 import java.io.File;
 
@@ -66,7 +66,8 @@ public class BoardView {
     /** The background color */
     private final Color BACKGROUND = Color.web("#d4ffde");
 
-
+    /** The ConsoleGame */
+    ConsoleGame consoleGame = new ConsoleGame();
 
     /**
      * Constructor
@@ -333,13 +334,21 @@ public class BoardView {
      * Initializes the controls
      */
     private void initControls() {
+        GridPane controls = new GridPane();
         // Mark of where the controls will be // TODO remove this and add the controls
-        Label controls = new Label("CONTROLS");
-        controls.setTextAlignment(TextAlignment.CENTER);
         controls.setAlignment(Pos.CENTER);
         controls.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
         controls.setBorder(new Border(new BorderStroke(null, BorderStrokeStyle.SOLID, null, null)));
+        Button token = new Button("Input Player Info");
+        token.setOnAction(event -> new TokenStage());
+        controls.add(token, 0, 0);
+
+        Button console = new Button("Start Console Game");
+        console.setOnAction(event -> consoleGame.runConsoleGame());
+        controls.add(console,0, 1);
+
         root.add(controls, 11, 5, 1, 6);
+
     }
 
     /**
